@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export const useLocalStorage = (key, fallback) => {
-    const [value, setValue] = useState(fallback)
+    const read = () => {
+        if (typeof window === 'undefined') return fallback
+        return window.localStorage.getItem(key) !== null ? window.localStorage.getItem(key) : fallback
+    }
+    const [value, setValue] = useState(read)
+    const updateValue = useCallback(val => { if (typeof window !== 'undefined') window.localStorage.setItem(key, val); setValue(val) },[key])
     useEffect(() => {
-        setValue((localStorage.getItem(key) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')))
-        const handleStorageChange = () => setValue(localStorage.getItem(key) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
-        window.addEventListener('storage', handleStorageChange)
-        return () => window.removeEventListener('storage', handleStorageChange)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    return { value, setValue: val => { localStorage.setItem(key, val); window.dispatchEvent(new Event('storage')) } }
+        if (typeof window === 'undefined') return
+        const onStorage = () => setValue(read())
+        window.addEventListener('storage', onStorage)
+        return () => window.removeEventListener('storage', onStorage)
+    }, [key])
+    return { value, setValue: updateValue }
 }
