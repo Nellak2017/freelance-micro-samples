@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "line-count-sorted-no-fluff": "find ./src/ -type f \\( -name '*.js' -o -name '*.mjs' -o -name '*.ts' -o -name '*.tsx' \\) ! \\( -name '*stories*' -o -name '*test*' \\) -exec wc -l {} + | sort -n"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.5",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"
