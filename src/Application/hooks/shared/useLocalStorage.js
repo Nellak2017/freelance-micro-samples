@@ -7,7 +7,7 @@ export const useLocalStorage = (key, fallback) => {
     }
     const [value, setValue] = useState(read)
     const updateValue = useCallback(val => { if (typeof window !== 'undefined') window.localStorage.setItem(key, val); setValue(val) },[key])
-    useEffect(() => {
+    useEffect(() => { // Listens for local storage changes from outside this tab
         if (typeof window === 'undefined') return
         const onStorage = () => setValue(read())
         window.addEventListener('storage', onStorage)

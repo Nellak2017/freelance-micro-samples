@@ -5,7 +5,7 @@ import { useLocalStorage } from '../shared/useLocalStorage'
 export const useApp = () => {
     const { value, setValue } = useLocalStorage('themeMode', typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
     const MUITheme = useMemo(() => value === 'dark' ? MUIDarkTheme : MUILightTheme, [value])
-    useEffect(() => {
+    useEffect(() => { // Listens for when the OS theme changes
         if (typeof window === 'undefined') return
         const media = window.matchMedia('(prefers-color-scheme: dark)')
         const handler = e => setValue(e.matches ? 'dark' : 'light')

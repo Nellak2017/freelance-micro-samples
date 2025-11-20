@@ -1,8 +1,9 @@
 import { Box } from '@mui/material'
+import { Nav } from '@/UI/molecules/Nav/Nav'
 export const HomeTemplate = () => (
-    <Box id='root' display='flex' sx={{ minHeight: '100vh', height: '100%' }}>
-        <Box id='main-content' component='main' display='flex' flexDirection='column' sx={{ width: '100%', height: '100vh', overflowY: 'auto', }}>
-            Hello World
+    <Box id='root' display='flex' flexDirection='column'>
+        <Nav />
+        <Box id='main-content' component='main' display='flex' flexDirection='column' sx={{ width: '100%', overflowY: 'auto', }}>
         </Box>
     </Box>
 )

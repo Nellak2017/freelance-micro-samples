@@ -6,6 +6,16 @@ const baseTheme = {
     spacing: num => ['4px', '8px', '16px', '32px', '48px', '56px',]?.[num - 1] || '4px',
     shape: { borderRadius: 8, },
     typography: { caption: { fontSize: '10px' }, h6: { fontSize: '12px' }, h5: { fontSize: '14px' }, h4: { fontSize: '16px' }, h3: { fontSize: '24px' }, h2: { fontSize: '40px' }, h1: { fontSize: '64px' }, body1: { fontSize: '16px' }, body2: { fontSize: '14px' }, },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: ({ theme }) => ({
+                    textTransform: 'none', minWidth: '85px', color: theme.palette.primary.contrastText, backgroundColor: theme.palette.primary.main,
+                    '& path': { color: theme.palette.primary.contrastText, },
+                })
+            }, variants: [], defaultProps: { variant: 'contained', },
+        },
+    },
     breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, }, },
     logoFilterActive: 'invert(100%) brightness(0%) invert(36%) sepia(80%) saturate(3178%) hue-rotate(238deg) brightness(99%) contrast(91%)',
 }
