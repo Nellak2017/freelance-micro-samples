@@ -11,6 +11,7 @@ const baseTheme = {
             styleOverrides: {
                 root: ({ theme }) => ({
                     textTransform: 'none', minWidth: '85px', color: theme.palette.primary.contrastText, backgroundColor: theme.palette.primary.main,
+                    borderRadius: '32px',
                     '& path': { color: theme.palette.primary.contrastText, },
                 })
             }, variants: [], defaultProps: { variant: 'contained', },
