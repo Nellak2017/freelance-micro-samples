@@ -1,16 +1,28 @@
 import { theme as MUIDarkTheme, lightTheme as MUILightTheme } from '@/UI/styles/MUITheme'
-import { useMemo, useEffect } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import { useLocalStorage } from '../shared/useLocalStorage'
 
 export const useApp = () => {
-    const { value, setValue } = useLocalStorage('themeMode', typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    const MUITheme = useMemo(() => value === 'dark' ? MUIDarkTheme : MUILightTheme, [value])
+    const { value, setValue } = useLocalStorage('themeMode', null)
+    const [clientValue, setClientValue] = useState(null) // null = SSR, unknown
+    useEffect(() => { // Sync SSR -> client
+        if (value) { setClientValue(value) }
+        else {
+            const mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+            setClientValue(mode)
+            setValue(mode)
+        }
+    }, [value, setValue])
+    const MUITheme = useMemo(() => {
+        if (!clientValue) return MUIDarkTheme // fallback for SSR
+        return clientValue === 'dark' ? MUIDarkTheme : MUILightTheme
+    }, [clientValue])
     useEffect(() => { // Listens for when the OS theme changes
-        if (typeof window === 'undefined') return
+        if (!clientValue) return
         const media = window.matchMedia('(prefers-color-scheme: dark)')
         const handler = e => setValue(e.matches ? 'dark' : 'light')
         media.addEventListener('change', handler)
         return () => { media.removeEventListener('change', handler) }
-    }, [setValue])
+    }, [clientValue, setValue])
     return { MUITheme }
 }

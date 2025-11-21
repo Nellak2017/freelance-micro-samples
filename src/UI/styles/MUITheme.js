@@ -13,8 +13,15 @@ const baseTheme = {
                     textTransform: 'none', minWidth: '85px', color: theme.palette.primary.contrastText, backgroundColor: theme.palette.primary.main,
                     borderRadius: '32px',
                     '& path': { color: theme.palette.primary.contrastText, },
+                    '&:hover': { backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText, },
+                    '&:active': { backgroundColor: theme.palette.primary.darker ?? theme.palette.primary.dark, color: theme.palette.primary.contrastText, },
                 })
             }, variants: [], defaultProps: { variant: 'contained', },
+        },
+        MuiCssBaseline: {
+            defaultProps: {
+                enableColorScheme: false,
+            },
         },
     },
     breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, }, },
@@ -30,6 +37,7 @@ const sharedPalette = {
     grey: { 50: '#ebeaeb', 100: '#e1e0e1', 200: '#c2bfc2', 300: '#1a1c28', 400: '#332c34', 500: '#2e272e', 600: '#2b252c', 700: '#221d23', 800: '#1a161a', 900: '#141114', },
 }
 export const lightTheme = createTheme({
+    cssVariables: false,
     palette: {
         mode: 'light',
         background: { default: '#faf9f4', paper: '#fff', paperBackground: '#f3f0e6' },
@@ -40,6 +48,7 @@ export const lightTheme = createTheme({
     ...baseTheme, logoFilter: 'invert(100%) brightness(0%)', /* Used for logo filter in Nav styles */
 })
 export const theme = createTheme({ // AKA: Dark Theme
+    cssVariables: false,
     palette: {
         mode: 'dark',
         background: { default: '#221c38', paper: '#312a4c', paperBackground: '#302A31' },
