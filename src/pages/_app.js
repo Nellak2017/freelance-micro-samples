@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
-import { GlobalStyles } from '@mui/material'
+import GlobalStyles from '@mui/material/GlobalStyles'
 import { muiGlobalStyles } from '@/UI/styles/globalStyles'
 import { useApp } from '@/Application/hooks/pages/useApp'
 import { AppCacheProvider } from '@mui/material-nextjs/v16-pagesRouter'

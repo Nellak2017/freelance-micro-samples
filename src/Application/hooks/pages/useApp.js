@@ -2,6 +2,7 @@ import { theme as MUIDarkTheme, lightTheme as MUILightTheme } from '@/UI/styles/
 import { useMemo, useEffect, useState } from 'react'
 import { useLocalStorage } from '../shared/useLocalStorage'
 
+// TODO: Change to the Cookie version to solve the SSR flicker problem
 export const useApp = () => {
     const { value, setValue } = useLocalStorage('themeMode', null)
     const [clientValue, setClientValue] = useState(null) // null = SSR, unknown

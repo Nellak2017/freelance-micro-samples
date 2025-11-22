@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { Nav } from '@/UI/molecules/Nav/Nav'
 export const HomeTemplate = () => (
     <Box id='root' display='flex' flexDirection='column' alignItems='center'>

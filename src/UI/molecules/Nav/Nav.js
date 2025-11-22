@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { LeftSlot, MiddleSlot, RightSlot } from './Nav.slots'
 import { MAX_CONTENT_WIDTH } from '@/Core/shared/global.constants'
 
