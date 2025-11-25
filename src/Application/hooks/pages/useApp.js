@@ -6,8 +6,8 @@ import { useLocalStorage } from '../shared/useLocalStorage'
 export const useApp = () => {
     const { value, setValue } = useLocalStorage('themeMode', null)
     const [clientValue, setClientValue] = useState(null) // null = SSR, unknown
-    useEffect(() => { setClientValue(value) /* eslint-disable-line react-hooks/set-state-in-effect */ }, [value, setValue]) // Sync SSR -> client
     const MUITheme = useMemo(() => clientValue === 'light' ? MUILightTheme : MUIDarkTheme, [clientValue])
+    useEffect(() => { setClientValue(value) /* eslint-disable-line react-hooks/set-state-in-effect */ }, [value, setValue]) // Sync SSR -> client
     useEffect(() => { // Listens for when the OS theme changes
         if (!clientValue) return
         const media = window.matchMedia('(prefers-color-scheme: dark)')
