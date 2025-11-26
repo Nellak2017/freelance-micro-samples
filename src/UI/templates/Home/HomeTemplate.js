@@ -6,7 +6,7 @@ export const HomeTemplate = () => (
     <Box id='root' display='flex' flexDirection='column' alignItems='center' minHeight='100vh'>
         <Nav sx={theme => ({ backgroundColor: theme.palette.background.default })} />
         <Box id='main-content' component='main' display='flex' flexDirection='column' alignItems='center' width='100%' gap={3}>
-            <VerticalSection />
+            <VerticalSection aria-label='First Home Section' />
             <Footer />
         </Box>
     </Box>
