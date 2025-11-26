@@ -40,6 +40,6 @@ export const MiddleSlot = ({ state = { links: [{ key: 'Home', title: 'Home', lab
 }
 export const RightSlot = ({ state: { title = 'Sign up', label = 'Sign up' } = {} }) => (
     <Box display='flex' alignItems='center' gap={3}>
-        <Tooltip title={title}><Button sx={{ paddingBlock: { xs: '12px', sm: '6px' } }}>{label}</Button></Tooltip>
+        <Tooltip title={title}><Button>{label}</Button></Tooltip>
     </Box>
 )

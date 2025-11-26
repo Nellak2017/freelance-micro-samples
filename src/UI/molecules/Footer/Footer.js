@@ -32,5 +32,5 @@ const DefaultChildren = (
     </Box>
 )
 export const Footer = ({ children = DefaultChildren, ...rest }) => (
-    <Box width='100%' {...rest}>{children}</Box>
+    <Box component='footer' width='100%' {...rest}>{children}</Box>
 )

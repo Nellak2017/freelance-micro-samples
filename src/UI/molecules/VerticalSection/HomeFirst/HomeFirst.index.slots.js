@@ -15,8 +15,8 @@ export const HomeFirstTop = ({ state: {
 } = {}
 }) => (
     <Box id='home-first-top' component='header' display='flex' flexDirection='column' gap={GAP} maxWidth={MAX_CONTENT_WIDTH * .60}>
-        <Typography component='h1' variant='h1' fontWeight='normal'>{header}</Typography>
-        <Typography component='h2' variant='h3' fontWeight='normal'>{subHeader}</Typography>
+        <Typography component='h1' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, sm: theme.typography.h2.fontSize, md: theme.typography.h1.fontSize }})}>{header}</Typography>
+        <Typography component='h2' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h5.fontSize, sm: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }})}>{subHeader}</Typography>
         <Box id='home-first-button-group' display='flex' justifyContent='center' gap={GAP}>
             <Button>{primaryButtonLabel}</Button>
             <Button sx={theme => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, } })}>
@@ -29,6 +29,6 @@ export const HomeFirstBottom = ({ state: { ratingValue = 5.0, ratingLabel = 'fro
     <FlexColCenter id='home-first-bottom' component='section' gap={GAP}>
         <FlexRow justifyContent='center'><Rating name='read-only' value={ratingValue} readOnly /><Typography component='legend'>{String(ratingValue.toFixed(1))}</Typography></FlexRow>
         <Typography>{ratingLabel}</Typography>
-        <FlexRow width='100%' alignItems='flex-end'>{cards?.map(({ key, height, Component, sx }) => <HomeFirstCard key={key} state={{ height }} sx={sx}>{<Component />}</HomeFirstCard>)}</FlexRow>
+        <FlexRow width={{ xs: '80%', sm: '50%', md: '100%' }} alignItems='flex-end' flexDirection={{ xs: 'column', md: 'row' }}>{cards?.map(({ key, Component, sx }) => <HomeFirstCard key={key} sx={sx}>{<Component />}</HomeFirstCard>)}</FlexRow>
     </FlexColCenter>
 )
