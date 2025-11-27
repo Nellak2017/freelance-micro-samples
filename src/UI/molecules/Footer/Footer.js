@@ -12,7 +12,7 @@ const Column = ({ state: { title = 'Company', links = [{ label: 'About us' }, { 
     </Box>
 )
 const DefaultChildren = (
-    <Box display='flex' flexDirection='column' px={6} sx={theme => ({ backgroundColor: theme.palette.background.paperBackground })}>
+    <Box display='flex' flexDirection='column' px={6} gap={3} sx={theme => ({ backgroundColor: theme.palette.background.paperBackground })}>
         <Box display='flex' alignItems='center' justifyContent='space-between' height='200px' pt={4}>
             <Box width='20%' height='100%'>
                 <LeftSlot />
@@ -26,8 +26,9 @@ const DefaultChildren = (
             <Column state={{ title: 'Get in Touch', links: [{ label: 'example@example.com' }] }} />
         </Box>
         <Divider />
-        <Box>
-            C 2025 Prodmast. All rights reserved
+        <Box height='96px' display='flex' alignItems='center' justifyContent='space-between'>
+            <Typography>&#169; 2025 Prodmast. All rights reserved</Typography>
+            <Typography>Terms & Conditions</Typography>
         </Box>
     </Box>
 )

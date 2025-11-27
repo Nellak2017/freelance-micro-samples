@@ -14,7 +14,7 @@ const baseTheme = {
                     borderRadius: '32px', paddingBlock: '12px', [theme.breakpoints.up('sm')]: { paddingBlock: '6px' },
                     '& path': { color: theme.palette.primary.contrastText, },
                     '&:hover': { backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText, fontWeight: 'bold', },
-                    '&:active': { backgroundColor: theme.palette.primary.darker ?? theme.palette.primary.dark, color: theme.palette.primary.contrastText, },
+                    '&:active, &:focus': { backgroundColor: theme.palette.primary.darker ?? theme.palette.primary.dark, color: theme.palette.primary.contrastText, },
                 })
             }, variants: [], defaultProps: { variant: 'contained', },
         },
