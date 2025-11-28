@@ -8,6 +8,7 @@ import { GAP } from '@/Core/components/VerticalSection/VerticalSection.slots.con
 import { HomeFirstCard, FlexColCenter, FlexRow } from './HomeFirst.helper.slots'
 import { HomeFirstBottomCards } from './HomeFirst.cards.slots'
 
+// TODO: consider converting hard coded data in Home First to constants file instead
 export const HomeFirstTop = ({ state: {
     header = 'The Future of Manufacturing with Latest Technology',
     subHeader = "Expert tech to elevate your manufacturing. Let's take your business further.",
@@ -20,7 +21,7 @@ export const HomeFirstTop = ({ state: {
         <Typography component='h2' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h5.fontSize, sm: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize } })}>{subHeader}</Typography>
         <Box id='home-first-button-group' display='flex' justifyContent='center' gap={GAP}>
             <Tooltip title={primaryButtonLabel}><Button aria-label={primaryButtonLabel}>{primaryButtonLabel}</Button></Tooltip>
-            <Tooltip title={secondaryButtonLabel}><Button aria-label={secondaryButtonLabel} sx={theme => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, } })}>
+            <Tooltip title={secondaryButtonLabel}><Button aria-label={secondaryButtonLabel} variant='secondary'>
                 {secondaryButtonLabel}
             </Button></Tooltip>
         </Box>

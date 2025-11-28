@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles'
 
 // TODO: Customize colors more
+// TODO: Override Typography to have responsive style variants for the various things instead of inline sx everywhere!
 // Custom Properties: logoFilter, logoFilterActive, paperBackground
 const baseTheme = {
     spacing: num => ['4px', '8px', '16px', '32px', '48px', '56px',]?.[num - 1] || '4px',
@@ -16,7 +17,12 @@ const baseTheme = {
                     '&:hover': { backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText, fontWeight: 'bold', },
                     '&:active, &:focus': { backgroundColor: theme.palette.primary.darker ?? theme.palette.primary.dark, color: theme.palette.primary.contrastText, },
                 })
-            }, variants: [], defaultProps: { variant: 'contained', },
+            }, variants: [
+                {
+                    props: { variant: 'secondary' },
+                    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, }, })
+                }
+            ], defaultProps: { variant: 'contained', },
         },
         MuiCssBaseline: {
             defaultProps: {

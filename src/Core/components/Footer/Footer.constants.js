@@ -5,4 +5,4 @@ export const FOOTER_COLUMN_DATA = [
     { title: 'Products', links: [{ label: 'Manufacturing Execution System' }, { label: 'Enterprise Resource Planning' }, { label: 'Quality Management System' }, { label: 'Supply Chain Planning' },] },
     { title: 'Get in Touch', links: [{ label: 'example@example.com' }] },
 ] // If this was not constant it would had been in a special hook
-export const CLOSING_REMARKS = { left: '&#169; 2025 Prodmast. All rights reserved', right: 'Terms & Conditions' }
+export const CLOSING_REMARKS = { left: '© 2025 Prodmast. All rights reserved', right: 'Terms & Conditions' }
