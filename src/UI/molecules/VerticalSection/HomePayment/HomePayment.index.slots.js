@@ -11,22 +11,30 @@ import { MdOutlineCheckCircle } from 'react-icons/md'
 import { ICON_SIZE, MAX_CONTENT_WIDTH } from '@/Core/shared/global.constants'
 import { TopData, BottomData } from '@/Core/components/VerticalSection/HomePayment.constants'
 
-// TODO: Responsive, tech debt / style
+// TODO: tech debt / style
+// NOTE: fixed height in Pricing Card due to annoying height inconsistencies
 const PricingCard = ({ state: { planType, planDescription, pricePerMonth, featureList } = {}, ...rest }) => (
-    <Box component='article' aria-labelledby={`${planType}-title`} display='flex' flexDirection='column' alignItems='flex-start' justifyContent='space-between' textAlign='start' width='100%' gap={3} p={3} borderRadius={2} sx={theme => ({ backgroundColor: theme.palette.background.paper })} {...rest}>
-        <Typography id={`${planType}-title`} component='h3' fontWeight='bold' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }, })}>{planType}</Typography>
-        <Typography width='100%' height='100%' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>{planDescription}</Typography>
+    <Box component='article' aria-labelledby={`${planType}-title`} display='flex' flexDirection='column' alignItems='flex-start' justifyContent='space-between' textAlign='start' width='100%' height='100%' gap={3} p={3} borderRadius={2} sx={theme => ({ backgroundColor: theme.palette.background.paper })} {...rest}>
 
-        <Box display='flex' alignItems='center' gap={1}>
-            <Typography fontWeight='bold' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, })}>{`$${pricePerMonth}`}</Typography>
-            <Typography textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>/ month</Typography>
+        <Box
+            display='flex' flexDirection='column' justifyContent='space-between' gap={3}
+            width='100%' minHeight='230px' height='230px'
+            sx={{ alignItems: { xs: 'center', sm: 'flex-start' } }}
+        >
+            <Typography id={`${planType}-title`} component='h3' fontWeight='bold' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }, textAlign: { xs: 'center', sm: 'start'} })}>{planType}</Typography>
+            <Typography width='100%' height='100%' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, textAlign: { xs: 'center', sm: 'start'} })}>{planDescription}</Typography>
+
+            <Box display='flex' alignItems='center' gap={1}>
+                <Typography fontWeight='bold' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, })}>{`$${pricePerMonth}`}</Typography>
+                <Typography textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>/ month</Typography>
+            </Box>
+
+            <Tooltip title={`Get Started with ${planType}`}><Button variant='outlined' fullWidth aria-label={`Get Started with ${planType} plan`}>Get Started</Button></Tooltip>
         </Box>
-
-        <Tooltip title={`Get Started with ${planType}`}><Button variant='outlined' fullWidth aria-label={`Get Started with ${planType} plan`}>Get Started</Button></Tooltip>
 
         <Divider aria-hidden sx={{ width: '100%' }}>Features</Divider>
 
-        <List dense aria-label={`${planType} features`}>
+        <List dense aria-label={`${planType} features`} sx={{ height: '50%', width: '100%' }}>
             {featureList?.map(content => (
                 <ListItem key={content} sx={{ boxShadow: 'none' }}>
                     <ListItemIcon><MdOutlineCheckCircle size={ICON_SIZE} aria-hidden /></ListItemIcon>
@@ -35,6 +43,7 @@ const PricingCard = ({ state: { planType, planDescription, pricePerMonth, featur
             ))}
         </List>
     </Box>
+
 )
 const LastPricingCard = ({ state: { planType, planDescription } = {}, sx, ...rest }) => (
     <Box component='article' aria-labelledby={`${planType}-title`} display='flex' flexDirection='column' alignItems='center' justifyContent='center' textAlign='start' width='100%' gap={3} p={3} borderRadius={2} sx={theme => ({ backgroundColor: theme.palette.background.paper, ...sx })} {...rest}>
@@ -50,11 +59,11 @@ const Top = ({ state: { header, subHeader } = TopData }) => (
     </Box>
 )
 const Bottom = ({ state = BottomData }) => (
-    <Box role='group' aria-label='Pricing plans' display='grid' width='70%' gap={3} gridTemplateColumns='repeat(2, 1fr)' gridTemplateRows='auto auto'>
+    <Box role='group' aria-label='Pricing plans' display='grid' width='70%' height='100%' gap={3} gridTemplateColumns={{ xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))' }} gridAutoRows='auto auto'>
         {state?.map((cardState, index) => (
             index < state.length - 1
                 ? <PricingCard key={cardState?.key} state={cardState} />
-                : <LastPricingCard key={cardState?.key} state={cardState} sx={{ gridColumn: '1 / span 2' }} />
+                : <LastPricingCard key={cardState?.key} state={cardState} sx={{ gridColumn: { xs: '1', sm: '1 / span 2' } }} />
         ))}
     </Box>
 )

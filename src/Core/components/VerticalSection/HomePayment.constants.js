@@ -7,7 +7,7 @@ const starterFeatures = [
 const enterpriseFeatures = [
     'Unlimited production units',
     'Dedicated account manager',
-    'Taiored manufacturing solutions',
+    'Tailored manufacturing solutions',
     'Predictive production optimization'
 ]
 export const TopData = { header: 'Tailored Plans for Your Manufacturing Scale', subHeader: 'Flexible pricing for any business size.' }
