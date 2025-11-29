@@ -26,7 +26,7 @@ export const PricingCard = ({ state: { planType, planDescription, pricePerMonth,
         <Divider aria-hidden sx={{ width: '100%' }}>Features</Divider>
         <List dense aria-label={`${planType} features`} sx={{ height: '50%' }}>
             {featureList?.map(content => (
-                <ListItem key={content} sx={{ boxShadow: 'none' }}>
+                <ListItem key={content} sx={{ boxShadow: 'none', px: '0px' }}>
                     <ListItemIcon><MdOutlineCheckCircle size={ICON_SIZE} aria-hidden /></ListItemIcon>
                     <ListItemText primary={content} />
                 </ListItem>

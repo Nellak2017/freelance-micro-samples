@@ -34,9 +34,9 @@ const HomeFirstBottomFifthCard = () => (
     </FlexColCenter>
 )
 export const HomeFirstBottomCards = [
-    { key: 'HomeFirstBottomFirstCard', Component: HomeFirstBottomFirstCard, sx: { aspectRatio: { xs: '2/3', sm: '1/1', md: '6/10' } }, },
-    { key: 'HomeFirstBottomSecondCard', Component: HomeFirstBottomSecondCard, sx: theme => ({ aspectRatio: { xs: '2/3', sm: '1/1', md: '8/10' }, backgroundColor: theme.palette.primary.main, }), },
-    { key: 'HomeFirstBottomThirdCard', Component: HomeFirstBottomThirdCard, sx: theme => ({ aspectRatio: { xs: '2/3', sm: '1/1', md: '1/1' }, backgroundColor: theme.palette.background.paper }) },
-    { key: 'HomeFirstBottomFourthCard', Component: HomeFirstBottomFourthCard, sx: theme => ({ aspectRatio: { xs: '2/3', sm: '1/1', md: '8/10' }, backgroundColor: theme.palette.secondary.main, color: theme.palette.secondary.contrastText, }) },
-    { key: 'HomeFirstBottomFifthCard', Component: HomeFirstBottomFifthCard, sx: theme => ({ aspectRatio: { xs: '2/3', sm: '1/1', md: '6/10' }, backgroundColor: theme.palette.primary.light, }), },
+    { key: 'HomeFirstBottomFirstCard', Component: HomeFirstBottomFirstCard, sx: { aspectRatio: { xs: '1/1', md: '6/10' } }, },
+    { key: 'HomeFirstBottomSecondCard', Component: HomeFirstBottomSecondCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '8/10' }, backgroundColor: theme.palette.primary.main, }), },
+    { key: 'HomeFirstBottomThirdCard', Component: HomeFirstBottomThirdCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '1/1' }, backgroundColor: theme.palette.background.paper }) },
+    { key: 'HomeFirstBottomFourthCard', Component: HomeFirstBottomFourthCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '8/10' }, backgroundColor: theme.palette.secondary.main, color: theme.palette.secondary.contrastText, }) },
+    { key: 'HomeFirstBottomFifthCard', Component: HomeFirstBottomFifthCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '6/10' }, backgroundColor: theme.palette.primary.light, }), },
 ]

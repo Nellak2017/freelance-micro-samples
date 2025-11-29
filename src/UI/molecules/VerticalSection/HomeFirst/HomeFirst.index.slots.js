@@ -32,6 +32,6 @@ export const HomeFirstBottom = ({ state: { ratingValue = 5.0, ratingLabel = 'fro
         <Box id='reviews-title' component='span' display='none'>Customer Reviews</Box>
         <FlexRow justifyContent='center'><Rating name='read-only' value={ratingValue} readOnly aria-label='Customer rating' /><Typography component='span'>{String(ratingValue.toFixed(1))}</Typography></FlexRow>
         <Typography>{ratingLabel}</Typography>
-        <FlexRow width={{ xs: '80%', sm: '50%', md: '100%' }} alignItems='flex-end' flexDirection={{ xs: 'column', md: 'row' }}>{cards?.map(({ key, Component, sx }) => <HomeFirstCard key={key} sx={sx}>{<Component />}</HomeFirstCard>)}</FlexRow>
+        <FlexRow width={{ xs: '70%', sm: '50%', md: '100%' }} alignItems='flex-end' flexDirection={{ xs: 'column', md: 'row' }}>{cards?.map(({ key, Component, sx }) => <HomeFirstCard key={key} sx={sx}>{<Component />}</HomeFirstCard>)}</FlexRow>
     </FlexColCenter>
 )
