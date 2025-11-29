@@ -21,7 +21,14 @@ const baseTheme = {
                 {
                     props: { variant: 'secondary' },
                     style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, }, })
-                }
+                },
+                {
+                    props: { variant: 'outlined' },
+                    style: ({ theme }) => ({
+                        border: `1px solid ${theme.palette.primary.main}`, backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary,
+                        '&:hover': { backgroundColor: `${theme.palette.primary.dark}50`, color: theme.palette.text.primary, },
+                    })
+                },
             ], defaultProps: { variant: 'contained', },
         },
         MuiCssBaseline: {

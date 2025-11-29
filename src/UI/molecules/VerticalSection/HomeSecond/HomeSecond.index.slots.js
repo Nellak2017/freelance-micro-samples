@@ -10,6 +10,7 @@ import { GridItem, TopGridItem, BottomGridItem } from './HomeSecond.helper.slots
 // TODO: Fix aria stuff
 // TODO: Fix semantic stuff
 // TODO: Use the Typography default override instead of repeating long sx stuff
+// TODO: Extract the Header/Sub-header typography into its own re-used molecule, it is also used in HomePayment
 const { header, subHeader } = SECTION_HEADER
 export const DefaultChildrenHomeSecond = (
     <Box display='flex' flexDirection='column' alignItems='center' p={3} gap={3} maxWidth={MAX_CONTENT_WIDTH} width='100%'>
