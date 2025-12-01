@@ -20,7 +20,7 @@ const baseTheme = {
             }, variants: [
                 {
                     props: { variant: 'secondary' },
-                    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, }, })
+                    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, boxShadow: theme.shadows[1], '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, }, })
                 },
                 {
                     props: { variant: 'outlined' },
