@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@mui/material/Button'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
 import { useForm } from 'react-hook-form'
 import { StyledAuthForm, SignInContainer, } from './AuthForm.elements.js'
 import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '@/Infra/workflows/AuthForm.handlers.js'
@@ -10,20 +12,31 @@ import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } f
 
 // TODO: Use the responsive header variants you will define later instead so it is simpler
 // TODO: Responsive (especially for horizontal phones!), Semantic last check, Light House Check
-const GeneralAuthForm = ({ state: { emailButtonText = 'Sign in with Email', title = 'Sign in' } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
+// TODO: Fix type error when form submits with nothing in it
+// TODO: Consider extracting the hook below here to a custom hook
+// TODO: Fix accidental complexity related to Snackbar not closing after x amount of time
+const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarText = '' } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
     const router = useRouter()
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
+    const handleOpen = () => setIsSnackbarOpen(true)
+    const handleClose = (_, reason) => reason === 'clickaway' ? undefined : setIsSnackbarOpen(false)
     return (
-        <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
+        <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, handleOpen, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
             <Logo state={{ size: 96 }} /><h2 id='auth-form-title'>{title}</h2>
             {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}
             <SignInContainer><Button type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>
+            <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity='success' variant='filled' sx={{ color: 'text.primary' }}>
+                    {snackbarText}
+                </Alert>
+            </Snackbar>
         </StyledAuthForm>
     )
 }
 export const SignIn = () => (
     <>
-        <GeneralAuthForm><CallToAction state={SIGN_IN_DATA} /><EmailFormInput /><PasswordFormInput /></GeneralAuthForm>
+        <GeneralAuthForm state={SIGN_IN_DATA}><CallToAction state={SIGN_IN_DATA} /><EmailFormInput /><PasswordFormInput /></GeneralAuthForm>
         <ForgotPasswordLink state={SIGN_IN_DATA} />
     </>)
 export const SignUp = () => (

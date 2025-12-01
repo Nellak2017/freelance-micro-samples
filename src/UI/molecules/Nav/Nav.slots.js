@@ -9,12 +9,11 @@ import List from '@mui/material/List'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Logo } from '@/UI/atoms/AvatarLink/AvatarLink.slots'
 import Link from 'next/link'
+import { SITE_TITLE, DEFAULT_NAV_LINKS, DEFAULT_NAV_BUTTON_DATA } from '@/Core/components/Nav/Nav.constants'
 
 const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
-export const LeftSlot = ({ state: { title = 'Prodmast' } = {} }) => (
-    <Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>
-)
-export const MiddleSlot = ({ state = { links: [{ key: 'Home', title: 'Home', label: 'Home' }, { key: 'About', title: 'About', label: 'About' }, { key: 'Services', title: 'Services', label: 'Services' }, { key: 'Contact', title: 'Contact', label: 'Contact' }] } } = {}) => {
+export const LeftSlot = ({ state: { title = SITE_TITLE } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>)
+export const MiddleSlot = ({ state : { links = DEFAULT_NAV_LINKS } = {} } ) => {
     const isMedium = useMediaQuery(theme => theme.breakpoints.down('md'))
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'))
     const [isOpen, setIsOpen] = useState(false)
@@ -24,17 +23,21 @@ export const MiddleSlot = ({ state = { links: [{ key: 'Home', title: 'Home', lab
                 <IconButton title='Open navigation menu' onClick={() => setIsOpen(true)} aria-expanded={isOpen} aria-controls='main-menu' aria-label='Open navigation menu'><MenuIcon /></IconButton>
                 <Drawer anchor='left' open={isOpen} onClose={() => setIsOpen(false)}>
                     <List sx={{ px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
-                        {state?.links?.map(({ key, title, label }) => (
-                            <CustomLink title={title} key={key} component='li'>{label}</CustomLink>
-                        ))}
+                        {links?.map(({ key, title, label }) => (<CustomLink title={title} key={key} component='li'>{label}</CustomLink>))}
                     </List>
                 </Drawer>
             </>
         )
         : (
             <Box component='ul' display='flex' alignItems='center' gap={isMedium ? 2 : 4} aria-label='Main Navigation Links'>
-                {state?.links?.map(({ key, title, label }) => (<CustomLink title={title} key={key} component='li' aria-label={`Link to ${label}`}>{label}</CustomLink>))}
+                {links?.map(({ key, title, label }) => (<CustomLink title={title} key={key} component='li' aria-label={`Link to ${label}`}>{label}</CustomLink>))}
             </Box>
         )
 }
-export const RightSlot = ({ state: { title = 'Sign up', label = 'Sign up' } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Button title={title}>{label}</Button></Box>)
+export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}}) => (
+    <Box display='flex' alignItems='center' gap={3}>
+        {buttonData?.map(({ title, label, href }, index) => (
+            <Button key={`Home-Nav-${label}-Button`} title={title} href={href} variant={['contained', 'secondary']?.[index % 2]}>{label}</Button>
+        ))}
+    </Box>
+)
