@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import Tooltip from '@mui/material/Tooltip'
 import { MAX_CONTENT_WIDTH } from '@/Core/shared/global.constants'
 import Rating from '@mui/material/Rating'
 import { GAP } from '@/Core/components/VerticalSection/VerticalSection.slots.constants'
@@ -20,10 +19,10 @@ export const HomeFirstTop = ({ state: {
         <Typography id='home-first-header' component='h1' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, sm: theme.typography.h2.fontSize, md: theme.typography.h1.fontSize } })}>{header}</Typography>
         <Typography component='h2' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h5.fontSize, sm: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize } })}>{subHeader}</Typography>
         <Box id='home-first-button-group' display='flex' justifyContent='center' gap={GAP}>
-            <Tooltip title={primaryButtonLabel}><Button aria-label={primaryButtonLabel}>{primaryButtonLabel}</Button></Tooltip>
-            <Tooltip title={secondaryButtonLabel}><Button aria-label={secondaryButtonLabel} variant='secondary'>
+            <Button aria-label={primaryButtonLabel} title={primaryButtonLabel}>{primaryButtonLabel}</Button>
+            <Button aria-label={secondaryButtonLabel} variant='secondary' title={secondaryButtonLabel}>
                 {secondaryButtonLabel}
-            </Button></Tooltip>
+            </Button>
         </Box>
     </Box>
 )

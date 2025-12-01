@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
@@ -21,7 +20,7 @@ export const PricingCard = ({ state: { planType, planDescription, pricePerMonth,
                 <Typography fontWeight='bold' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, })}>{`$${pricePerMonth}`}</Typography>
                 <Typography textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>/ month</Typography>
             </Box>
-            <Tooltip title={`Get Started with ${planType}`}><Button variant='outlined' fullWidth aria-label={`Get Started with ${planType} plan`}>Get Started</Button></Tooltip>
+            <Button variant='outlined' fullWidth title={`Get Started with ${planType}`} aria-label={`Get Started with ${planType} plan`}>Get Started</Button>
         </Box>
         <Divider aria-hidden sx={{ width: '100%' }}>Features</Divider>
         <List dense aria-label={`${planType} features`} sx={{ height: '50%' }}>
@@ -38,6 +37,6 @@ export const LastPricingCard = ({ state: { planType, planDescription } = {}, sx,
     <Box component='article' aria-labelledby={`${planType}-title`} display='flex' flexDirection='column' alignItems='center' justifyContent='center' textAlign='start' width='100%' gap={3} p={3} borderRadius={2} sx={theme => ({ backgroundColor: theme.palette.background.paper, ...sx })} {...rest}>
         <Typography id={`${planType}-title`} component='h3' fontWeight='bold' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }, })}>{planType}</Typography>
         <Typography width='50%' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>{planDescription}</Typography>
-        <Tooltip title={`Get Started with ${planType}`}><Button variant='outlined' aria-label={`Get Started with ${planType} plan`}>Get Started</Button></Tooltip>
+        <Button variant='outlined' title={`Get Started with ${planType}`} aria-label={`Get Started with ${planType} plan`}>Get Started</Button>
     </Box>
 )

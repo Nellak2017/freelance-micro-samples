@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import IconButton from '@mui/material/IconButton'
@@ -11,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { Logo } from '@/UI/atoms/AvatarLink/AvatarLink.slots'
 import Link from 'next/link'
 
-const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Tooltip title={title}><Link href={href}>{children}</Link></Tooltip></Box>)
+const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
 export const LeftSlot = ({ state: { title = 'Prodmast' } = {} }) => (
     <Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>
 )
@@ -22,7 +21,7 @@ export const MiddleSlot = ({ state = { links: [{ key: 'Home', title: 'Home', lab
     return isSmall
         ? (
             <>
-                <Tooltip title='Open navigation menu'><IconButton onClick={() => setIsOpen(true)} aria-expanded={isOpen} aria-controls='main-menu' aria-label='Open navigation menu'><MenuIcon /></IconButton></Tooltip>
+                <IconButton title='Open navigation menu' onClick={() => setIsOpen(true)} aria-expanded={isOpen} aria-controls='main-menu' aria-label='Open navigation menu'><MenuIcon /></IconButton>
                 <Drawer anchor='left' open={isOpen} onClose={() => setIsOpen(false)}>
                     <List sx={{ px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
                         {state?.links?.map(({ key, title, label }) => (
@@ -38,8 +37,4 @@ export const MiddleSlot = ({ state = { links: [{ key: 'Home', title: 'Home', lab
             </Box>
         )
 }
-export const RightSlot = ({ state: { title = 'Sign up', label = 'Sign up' } = {} }) => (
-    <Box display='flex' alignItems='center' gap={3}>
-        <Tooltip title={title}><Button>{label}</Button></Tooltip>
-    </Box>
-)
+export const RightSlot = ({ state: { title = 'Sign up', label = 'Sign up' } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Button title={title}>{label}</Button></Box>)
