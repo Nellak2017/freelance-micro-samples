@@ -26,11 +26,7 @@ const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarTe
             <Logo state={{ size: 96 }} /><h2 id='auth-form-title'>{title}</h2>
             {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}
             <SignInContainer><Button type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>
-            <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity='success' variant='filled' sx={{ color: 'text.primary' }}>
-                    {snackbarText}
-                </Alert>
-            </Snackbar>
+            <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={handleClose}><Alert onClose={handleClose} severity='success' variant='filled' sx={{ color: 'text.primary' }}>{snackbarText}</Alert></Snackbar>
         </StyledAuthForm>
     )
 }
