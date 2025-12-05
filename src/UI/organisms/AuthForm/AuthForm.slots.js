@@ -14,7 +14,6 @@ import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } f
 // TODO: Responsive (especially for horizontal phones!), Semantic last check, Light House Check
 // TODO: Fix type error when form submits with nothing in it
 // TODO: Consider extracting the hook below here to a custom hook
-// TODO: Fix accidental complexity related to Snackbar not closing after x amount of time
 // TODO: Experiment with Paper variant outlined for a better look
 const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarText = '' } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
     const router = useRouter()

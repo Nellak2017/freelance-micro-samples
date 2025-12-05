@@ -7,7 +7,7 @@ import { DefaultChildrenHomeSecond } from '@/UI/molecules/VerticalSection/HomeSe
 import { DefaultChildrenHomePayment } from '@/UI/molecules/VerticalSection/HomePayment/HomePayment.index.slots'
 export const HomeTemplate = () => (
     <Box id='root' display='flex' flexDirection='column' alignItems='center' minHeight='100vh' justifyContent='space-between'>
-        <Nav sx={theme => ({ backgroundColor: theme.palette.background.default, })} />
+        <Nav />
         <Box id='main-content' component='main' display='flex' flexDirection='column' alignItems='center' width='100%'>
             <VerticalSection aria-label='First Home Section' />
             <VerticalSection aria-label='Second Home Section' sx={theme => ({ backgroundColor: theme.palette.primary.main })}>

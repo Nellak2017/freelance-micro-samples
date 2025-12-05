@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { SITE_TITLE, DEFAULT_NAV_LINKS, DEFAULT_NAV_BUTTON_DATA } from '@/Core/components/Nav/Nav.constants'
 import { CustomDarkModeSwitch } from '@/UI/atoms/CustomDarkModeSwitch/CustomDarkModeSwitch'
 
-const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
+export const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
 export const LeftSlot = ({ state: { title = SITE_TITLE } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>)
 export const MiddleSlot = ({ state : { links = DEFAULT_NAV_LINKS } = {} } ) => {
     const isMedium = useMediaQuery(theme => theme.breakpoints.down('md'))
@@ -24,7 +24,7 @@ export const MiddleSlot = ({ state : { links = DEFAULT_NAV_LINKS } = {} } ) => {
                 <IconButton title='Open navigation menu' onClick={() => setIsOpen(true)} aria-expanded={isOpen} aria-controls='main-menu' aria-label='Open navigation menu'><MenuIcon /></IconButton>
                 <Drawer anchor='left' open={isOpen} onClose={() => setIsOpen(false)}>
                     <List sx={{ px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
-                        {links?.map(({ key, title, label }) => (<CustomLink title={title} key={key} component='li'>{label}</CustomLink>))}
+                        {links?.map(({ key, title, label, href }) => (<CustomLink title={title} key={key} component='li' href={href}>{label}</CustomLink>))}
                     </List>
                 </Drawer>
             </>

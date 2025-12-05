@@ -13,6 +13,7 @@ export const ForgotPasswordLink = ({ state: { forgotPasswordText, forgotPassword
 export const CallToAction = ({ state: { text, link, linkText } = {} }) => (<Box display='flex' gap={2} alignItems='center'><h3>{text}</h3><Link href={link} component={NextLink}>{linkText}</Link></Box>)
 export const FormInputTextField = ({ state: { fieldName, htmlFor, label, placeholder, autoComplete, isRequired, rules, slotProps, } = {}, services: { register } = {}, errors, children, ...rest }) => (
     <TextField
+        component='label'
         {...register(fieldName, rules)}
         id={fieldName} name={fieldName} label={label} type={htmlFor}
         placeholder={placeholder} autoComplete={autoComplete} required={isRequired} fullWidth

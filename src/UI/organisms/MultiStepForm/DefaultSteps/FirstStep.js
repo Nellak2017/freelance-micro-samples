@@ -8,7 +8,6 @@ import { GeneralMultiStepAuthForm } from './DefaultSteps.slots.helpers'
 import { useMultiStep } from '@/Application/hooks/organisms/MultiStepForm/useMultiStepForm'
 import { FIRST_NAME_DATA, LAST_NAME_DATA, EMAIL_DATA, GENDER_DATA } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
 
-// TODO: Make better rules and ensure the htmlFor, autoComplete, and others are right as well
 const FirstStepForm = ({ handleNext, children }) => {
     const { register, errors, watch } = useMultiStep()
     return (
@@ -18,7 +17,7 @@ const FirstStepForm = ({ handleNext, children }) => {
         </>
     )
 }
-const FirstStepGridInput = React.memo(({ children, ...rest }) => (<Grid size={{ xs: 12, sm: 6 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
+const FirstStepGridInput = React.memo(({ children, ...rest }) => (<Grid mb={3} size={{ xs: 12, sm: 6 }} role='none'><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
 const FirstNameInput = ({ register, errors }) => (<FirstStepGridInput state={FIRST_NAME_DATA} services={{ register }} errors={errors} />)
 const LastNameInput = ({ register, errors }) => (<FirstStepGridInput state={LAST_NAME_DATA} services={{ register }} errors={errors} />)
 const EmailInput = ({ register, errors }) => (<FirstStepGridInput state={EMAIL_DATA} services={{ register }} errors={errors} />)

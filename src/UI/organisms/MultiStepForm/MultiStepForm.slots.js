@@ -27,17 +27,8 @@ export const StepForm = ({ serverStep }) => {
                 <CaroselView index={activeStep}>
                     <FirstStep handleNext={nextStep} />
                     <SecondStep handleNext={nextStep} handleBack={prevStep} />
-                    <Confirm>
-                        <Box display='flex' justifyContent='center' mt={3} gap={3}>
-                            <Button onClick={prevStep}>Back</Button><Button color='success' type='submit'>Confirm and Continue</Button>
-                        </Box>
-                    </Confirm>
-                    <Box>
-                        <Success />
-                        <Box display='flex' justifyContent='center' mt={3} gap={3}>
-                            <Button onClick={prevStep}>Back</Button>
-                        </Box>
-                    </Box>
+                    <Confirm><Box display='flex' justifyContent='center' mt={3} gap={3}><Button onClick={prevStep}>Back</Button><Button color='success' type='submit'>Confirm and Continue</Button></Box></Confirm>
+                    <Box><Success /><Box display='flex' justifyContent='center' mt={3} gap={3}><Button onClick={prevStep}>Back</Button></Box></Box>
                 </CaroselView>
             </Box>
         </FormProvider>

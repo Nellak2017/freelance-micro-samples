@@ -7,7 +7,6 @@ import { GeneralMultiStepAuthForm } from './DefaultSteps.slots.helpers'
 import { useMultiStep } from '@/Application/hooks/organisms/MultiStepForm/useMultiStepForm'
 import { CITY_DATA, DATE_OF_BIRTH_DATA, PHONE_NUMBER_DATA } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
 
-// TODO: Make better rules and ensure the htmlFor, autoComplete, and others are right as well
 const SecondStepForm = ({ handleNext, handleBack, children, }) => {
     const { register, errors } = useMultiStep()
     return (
@@ -20,7 +19,7 @@ const SecondStepForm = ({ handleNext, handleBack, children, }) => {
         </>
     )
 }
-const SecondStepGridInput = React.memo(({ children, ...rest }) => (<Grid size={{ xs: 12 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
+const SecondStepGridInput = React.memo(({ children, ...rest }) => (<Grid mb={3} size={{ xs: 12 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
 const CityInput = ({ register, errors }) => (<SecondStepGridInput state={CITY_DATA} services={{ register }} errors={errors} />)
 const DateOfBirthInput = ({ register, errors }) => (<SecondStepGridInput state={DATE_OF_BIRTH_DATA} services={{ register }} errors={errors} InputLabelProps={{ shrink: true }} />)
 const PhoneNumberInput = ({ register, errors }) => (<SecondStepGridInput state={PHONE_NUMBER_DATA} services={{ register }} errors={errors} />)

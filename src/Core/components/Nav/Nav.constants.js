@@ -1,3 +1,3 @@
 export const SITE_TITLE = 'Prodmast'
-export const DEFAULT_NAV_LINKS = [{ key: 'Home', title: 'Home', label: 'Home' }, { key: 'About', title: 'About', label: 'About' }, { key: 'Services', title: 'Services', label: 'Services' }, { key: 'Contact', title: 'Contact', label: 'Contact' }]
+export const DEFAULT_NAV_LINKS = [{ key: 'Home', title: 'Home', label: 'Home', href: '/' }, { key: 'About', title: 'About', label: 'About', href: '/' }, { key: 'Services', title: 'Services', label: 'Services', href: '/' }, { key: 'Contact', title: 'Contact', label: 'Contact', href: '/' }]
 export const DEFAULT_NAV_BUTTON_DATA = [{ title: 'Sign up', label: 'Sign up', href: '/sign-up' },{ title: 'Sign in', label: 'Sign in', href: '/sign-in' },]
