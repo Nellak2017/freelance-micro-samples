@@ -15,6 +15,7 @@ import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } f
 // TODO: Fix type error when form submits with nothing in it
 // TODO: Consider extracting the hook below here to a custom hook
 // TODO: Fix accidental complexity related to Snackbar not closing after x amount of time
+// TODO: Experiment with Paper variant outlined for a better look
 const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarText = '' } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
     const router = useRouter()
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -32,7 +33,11 @@ const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarTe
 }
 export const SignIn = () => (
     <>
-        <GeneralAuthForm state={SIGN_IN_DATA}><CallToAction state={SIGN_IN_DATA} /><EmailFormInput /><PasswordFormInput /></GeneralAuthForm>
+        <GeneralAuthForm state={SIGN_IN_DATA}>
+            <CallToAction state={SIGN_IN_DATA} />
+            <EmailFormInput />
+            <PasswordFormInput />
+        </GeneralAuthForm>
         <ForgotPasswordLink state={SIGN_IN_DATA} />
     </>)
 export const SignUp = () => (
