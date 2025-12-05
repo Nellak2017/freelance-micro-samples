@@ -3,8 +3,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 export const useQueryParam = (key, defaultValue = '') => {
     const router = useRouter()
-    const searchParams = useSearchParams()
-    const [value, setValue] = useState((searchParams.get(key) ?? defaultValue))
+    const searchParams = useSearchParams?.() // only exists client side
+    const [value, setValue] = useState(searchParams?.get(key) ?? defaultValue)
     useEffect(() => {
         const next = searchParams.get(key) ?? defaultValue
         if (next !== value) setValue(next)

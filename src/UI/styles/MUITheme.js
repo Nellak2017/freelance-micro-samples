@@ -10,12 +10,12 @@ const baseTheme = {
     components: {
         MuiButton: {
             styleOverrides: {
-                root: ({ theme }) => ({
-                    textTransform: 'none', minWidth: '85px', color: theme.palette.primary.contrastText, backgroundColor: theme.palette.primary.main,
+                root: ({ theme, ownerState }) => ({
+                    textTransform: 'none', minWidth: '85px', color: theme.palette[ownerState?.color || 'primary'].contrastText, backgroundColor: theme.palette[ownerState?.color || 'primary'].main,
                     borderRadius: '32px', paddingBlock: '12px', [theme.breakpoints.up('sm')]: { paddingBlock: '6px' },
-                    '& path': { color: theme.palette.primary.contrastText, },
-                    '&:hover': { backgroundColor: theme.palette.primary.dark, color: theme.palette.primary.contrastText, fontWeight: 'bold', },
-                    '&:active, &:focus': { backgroundColor: theme.palette.primary.darker ?? theme.palette.primary.dark, color: theme.palette.primary.contrastText, },
+                    '& path': { color: theme.palette[ownerState?.color || 'primary'].contrastText, },
+                    '&:hover': { backgroundColor: theme.palette[ownerState?.color || 'primary'].dark, color: theme.palette[ownerState?.color || 'primary'].contrastText, fontWeight: 'bold', },
+                    '&:active, &:focus': { backgroundColor: theme.palette[ownerState?.color || 'primary'].darker ?? theme.palette[ownerState?.color || 'primary'].dark, color: theme.palette[ownerState?.color || 'primary'].contrastText, },
                 })
             }, variants: [
                 {
@@ -31,11 +31,7 @@ const baseTheme = {
                 },
             ], defaultProps: { variant: 'contained', },
         },
-        MuiCssBaseline: {
-            defaultProps: {
-                enableColorScheme: false,
-            },
-        },
+        MuiCssBaseline: { defaultProps: { enableColorScheme: false, },},
     },
     breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, }, },
     logoFilterActive: 'invert(100%) brightness(0%) invert(36%) sepia(80%) saturate(3178%) hue-rotate(238deg) brightness(99%) contrast(91%)',
@@ -46,7 +42,7 @@ const sharedPalette = {
     error: { main: '#E34234', light: '#ff7961', dark: '#ba000d', contrastText: '#FFFFFF', },
     warning: { main: '#FFA726', light: '#ffd95b', dark: '#c77800', contrastText: '#000000', },
     info: { main: '#8773ff', light: '#aea2ff', dark: '#5f50b2', contrastText: '#FFFFFF', },
-    success: { main: '#66BB6A', light: '#98ee99', dark: '#338a3e', contrastText: '#000000', },
+    success: { main: '#66BB6A', light: '#98ee99', dark: '#338a3e', contrastText: '#FFFFFF', },
     grey: { 50: '#ebeaeb', 100: '#e1e0e1', 200: '#c2bfc2', 300: '#1a1c28', 400: '#332c34', 500: '#2e272e', 600: '#2b252c', 700: '#221d23', 800: '#1a161a', 900: '#141114', },
 }
 export const lightTheme = createTheme({

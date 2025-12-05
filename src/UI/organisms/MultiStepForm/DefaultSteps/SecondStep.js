@@ -11,16 +11,16 @@ import { CITY_DATA, DATE_OF_BIRTH_DATA, PHONE_NUMBER_DATA } from '@/Core/compone
 const SecondStepForm = ({ handleNext, handleBack, children, }) => {
     const { register, errors } = useMultiStep()
     return (
-    <>
-        <Grid container spacing={2}>{React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}</Grid>
-        <Box display='flex' justifyContent='flex-end' width='100%' gap={3}>
-            <Button title={'Back'} mt={3} ml={1} onClick={handleBack}>Back</Button>
-            <Button title={'Next'} mt={3} ml={1} onClick={handleNext}>Next</Button>
-        </Box>
-    </>
-)
+        <>
+            <Grid container spacing={2}>{React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}</Grid>
+            <Box display='flex' justifyContent='flex-end' width='100%' gap={3}>
+                <Button title={'Back'} mt={3} ml={1} onClick={handleBack}>Back</Button>
+                <Button title={'Next'} mt={3} ml={1} onClick={handleNext}>Next</Button>
+            </Box>
+        </>
+    )
 }
-const SecondStepGridInput = ({ children, ...rest }) => (<Grid size={{ xs: 12 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>)
+const SecondStepGridInput = React.memo(({ children, ...rest }) => (<Grid size={{ xs: 12 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
 const CityInput = ({ register, errors }) => (<SecondStepGridInput state={CITY_DATA} services={{ register }} errors={errors} />)
 const DateOfBirthInput = ({ register, errors }) => (<SecondStepGridInput state={DATE_OF_BIRTH_DATA} services={{ register }} errors={errors} InputLabelProps={{ shrink: true }} />)
 const PhoneNumberInput = ({ register, errors }) => (<SecondStepGridInput state={PHONE_NUMBER_DATA} services={{ register }} errors={errors} />)
@@ -33,3 +33,4 @@ export const SecondStep = ({ handleNext, handleBack, ...rest }) => (
         </SecondStepForm>
     </GeneralMultiStepAuthForm>
 )
+export default SecondStep

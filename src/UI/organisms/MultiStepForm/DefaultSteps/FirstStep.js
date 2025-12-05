@@ -18,16 +18,16 @@ const FirstStepForm = ({ handleNext, children }) => {
         </>
     )
 }
-const FirstStepGridInput = ({ children, ...rest }) => (<Grid size={{ xs: 12, sm: 6 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>)
-const FirstNameInput = React.memo(({ register, errors }) => (<FirstStepGridInput state={FIRST_NAME_DATA} services={{ register }} errors={errors} />))
-const LastNameInput = React.memo(({ register, errors }) => (<FirstStepGridInput state={LAST_NAME_DATA} services={{ register }} errors={errors} />))
-const EmailInput = React.memo(({ register, errors }) => (<FirstStepGridInput state={EMAIL_DATA} services={{ register }} errors={errors} />))
-const GenderInput = React.memo(({ register, errors }) => ( // TODO: fix the bug where the gender resets when moving forms
+const FirstStepGridInput = React.memo(({ children, ...rest }) => (<Grid size={{ xs: 12, sm: 6 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
+const FirstNameInput = ({ register, errors }) => (<FirstStepGridInput state={FIRST_NAME_DATA} services={{ register }} errors={errors} />)
+const LastNameInput = ({ register, errors }) => (<FirstStepGridInput state={LAST_NAME_DATA} services={{ register }} errors={errors} />)
+const EmailInput = ({ register, errors }) => (<FirstStepGridInput state={EMAIL_DATA} services={{ register }} errors={errors} />)
+const GenderInput = ({ register, errors }) => ( // TODO: fix the bug where the gender resets when moving forms
     <FirstStepGridInput state={GENDER_DATA} services={{ register }} errors={errors} select defaultValue='Male'>
         <MenuItem value='Male' sx={{ boxShadow: 'none' }}>Male</MenuItem>
         <MenuItem value='Female' sx={{ boxShadow: 'none' }}>Female</MenuItem>
     </FirstStepGridInput>
-))
+)
 export const FirstStep = ({ handleNext, ...rest }) => (
     <GeneralMultiStepAuthForm {...rest}>
         <FirstStepForm handleNext={handleNext}>
@@ -36,3 +36,4 @@ export const FirstStep = ({ handleNext, ...rest }) => (
         </FirstStepForm>
     </GeneralMultiStepAuthForm>
 )
+export default FirstStep
