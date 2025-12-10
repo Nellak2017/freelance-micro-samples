@@ -12,7 +12,7 @@ export const DefaultChildrenHomeSecond = (
     <Box display='flex' flexDirection='column' alignItems='center' p={{ xs: 0, sm: 3 }} gap={3} maxWidth={MAX_CONTENT_WIDTH} width={{ xs: '70%', sm: '100%' }}>
         <Box component='header' aria-labelledby='home-second-header' display='flex' flexDirection='column' alignItems='center' width={{ xs: '100%', sm: '50%' }} gap={3} >
             <Typography id='home-second-header' width='100%' variant='h2' fontWeight='bold' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, color: theme.palette.primary.contrastText })}>{header}</Typography>
-            <Typography width='70%' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, color: theme.palette.primary.contrastText })}>{subHeader}</Typography>
+            <Typography width='70%' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }, color: theme.palette.primary.contrastText })}>{subHeader}</Typography>
         </Box>
         <Box aria-label='home-grid-region' component='ul' display='grid' gap={3} width='100%' sx={{ gridTemplateColumns: { xs: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, alignItems: 'stretch', }}>
             {HOME_SECOND_DATA?.map(({ key, Icon, heading, description }) => (<GridItem key={key}><TopGridItem Icon={Icon} /><BottomGridItem heading={heading} description={description} /></GridItem>))}

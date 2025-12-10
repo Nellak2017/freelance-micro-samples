@@ -7,17 +7,17 @@ import { Confirm } from './DefaultSteps/Confirm'
 import { Success } from './DefaultSteps/Success'
 import { CaroselView } from '@/UI/molecules/CaroselView/CaroselView'
 import { useQueryParam } from '@/Application/hooks/shared/useQueryParam'
-import { ALL_STEPS_FIELDS } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
+import { ALL_STEPS_FIELDS, DEFAULT_VALUES } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
 
 export const StepForm = ({ serverStep }) => {
     const [activeStep, updateStep] = useQueryParam('form-step', serverStep)
-    const methods = useForm({ defaultValues: { firstName: '', lastName: '', email: '', gender: 'Male', city: '', dob: '', phoneNumber: '' }, shouldUnregister: false, mode: 'onTouched' })
+    const methods = useForm({ defaultValues: DEFAULT_VALUES, shouldUnregister: false, mode: 'onTouched' })
     const nextStep = async () => {
         const isValid = await methods.trigger(ALL_STEPS_FIELDS?.[Number(activeStep) % ALL_STEPS_FIELDS.length], { shouldFocus: true })
         if (isValid) { updateStep(Number(activeStep) + 1) }
     }
     const prevStep = () => updateStep(Number(activeStep) - 1)
-    const handleFormSubmit = ({ ...data }) => { updateStep(Number(activeStep) + 1); console.log({ ...data }) }
+    const handleFormSubmit = () => { updateStep(Number(activeStep) + 1) }
     return (
         <FormProvider {...methods}>
             <Box component='form' display='flex' justifyContent='center' alignItems='center' flexDirection='column' gap={3} width='100%'
@@ -28,7 +28,7 @@ export const StepForm = ({ serverStep }) => {
                     <FirstStep handleNext={nextStep} />
                     <SecondStep handleNext={nextStep} handleBack={prevStep} />
                     <Confirm><Box display='flex' justifyContent='center' mt={3} gap={3}><Button onClick={prevStep}>Back</Button><Button color='success' type='submit'>Confirm and Continue</Button></Box></Confirm>
-                    <Box><Success /><Box display='flex' justifyContent='center' mt={3} gap={3}><Button onClick={prevStep}>Back</Button></Box></Box>
+                    <Box><Success /><Box display='flex' justifyContent='center' mt={3} gap={3}><Button onClick={prevStep}>Back To Form</Button></Box></Box>
                 </CaroselView>
             </Box>
         </FormProvider>

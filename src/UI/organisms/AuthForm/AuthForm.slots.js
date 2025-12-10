@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { StyledAuthForm, SignInContainer, } from './AuthForm.elements.js'
 import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '@/Infra/workflows/AuthForm.handlers.js'
 import { MAX_WIDTH, SIGN_IN_DATA, SIGN_UP_DATA, FORGOT_PASSWORD_BUTTON_DATA, RESET_PASSWORD_BUTTON_DATA } from '@/Core/components/AuthForm/AuthForm.constants.js'
-import { Logo } from '@/UI/atoms/AvatarLink/AvatarLink.slots.js'
+import { LargeLogo } from '@/UI/atoms/AvatarLink/AvatarLink.slots.js'
 import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } from './AuthForm.slots.helpers.js'
 
 // TODO: Use the responsive header variants you will define later instead so it is simpler
@@ -23,7 +23,7 @@ const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarTe
     const handleClose = (_, reason) => reason === 'clickaway' ? undefined : setIsSnackbarOpen(false)
     return (
         <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, handleOpen, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
-            <Logo state={{ size: 96 }} /><h2 id='auth-form-title'>{title}</h2>
+            <LargeLogo state={{ size: 96 }} /><h2 id='auth-form-title'>{title}</h2>
             {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}
             <SignInContainer><Button type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>
             <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={handleClose}><Alert onClose={handleClose} severity='success' variant='filled' sx={{ color: 'text.primary' }}>{snackbarText}</Alert></Snackbar>

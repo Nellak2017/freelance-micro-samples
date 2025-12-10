@@ -1,14 +1,17 @@
-export const PREAMBLE_DATA = { header: 'Multi Step Form', subHeader: 'React Material UI multi step form with basic form validation logic.', labels: ['First Step', 'Second Step', 'Confirmation'], }
-// --- first step
-export const FIRST_NAME_DATA = { label: 'First Name', fieldName: 'firstName', htmlFor: 'name', placeholder: 'First Name', autoComplete: 'given-name', isRequired: true, rules: { required: 'First Name is required', minLength: { value: 2, message: 'Name must be at least 2 characters' } } }
-export const LAST_NAME_DATA = { label: 'Last Name', fieldName: 'lastName', htmlFor: 'name', placeholder: 'Last Name', autoComplete: 'family-name', isRequired: true, rules: { required: 'Last Name is required', minLength: { value: 2, message: 'Name must be at least 2 characters' } } }
-export const EMAIL_DATA = { label: 'Email', fieldName: 'email', htmlFor: 'email', placeholder: 'name@example.com', autoComplete: 'email', isRequired: true, rules: { required: 'Email is required', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Enter a valid email address', } }}
-export const GENDER_DATA = { label: 'Gender', fieldName: 'gender', htmlFor: 'select', isRequired: false, }
-export const FIRST_STEP_FIELDS = [FIRST_NAME_DATA.fieldName, LAST_NAME_DATA.fieldName, EMAIL_DATA.fieldName, GENDER_DATA.fieldName]
-// --- second step
-export const CITY_DATA = { label: 'City', fieldName: 'city', htmlFor: 'city', placeholder: 'Enter Your City', autoComplete: 'address-level2', isRequired: false }
-export const DATE_OF_BIRTH_DATA = { label: 'Date of birth', fieldName: 'dob', htmlFor: 'date', isRequired: false, rules: { validate: value => !value || new Date(value) < new Date() || 'Date of birth must be in the past' } }
-export const PHONE_NUMBER_DATA = { label: 'Phone number', fieldName: 'phoneNumber', htmlFor: 'phone', placeholder: 'xxx-xxx-xxxx', autoComplete: 'tel', isRequired: false, rules: {  pattern: { value: /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4,6})$/, message: 'Enter a valid phone number' } } }
-export const SECOND_STEP_FIELDS = [CITY_DATA.fieldName, DATE_OF_BIRTH_DATA.fieldName, PHONE_NUMBER_DATA.fieldName]
+export const PREAMBLE_DATA = { header: 'Tell Me About Your Project', subHeader: 'A clean, modern multi-step form built with accessible components and responsive design.', labels: ['Personal Details', 'Requirements', 'Review'], }
 // --- All steps
-export const ALL_STEPS_FIELDS = [FIRST_STEP_FIELDS, SECOND_STEP_FIELDS]
+export const FORM_DATA = [
+    {
+        fullName: { label: 'Full Name', defaultValue: '', fieldName: 'fullName', htmlFor: 'name', placeholder: 'Full Name', autoComplete: 'given-name', isRequired: true, rules: { required: 'Full Name is required', minLength: { value: 2, message: 'Name must be at least 2 characters' } } },
+        email: { label: 'Email', defaultValue: '', fieldName: 'email', htmlFor: 'email', placeholder: 'name@example.com', autoComplete: 'email', isRequired: true, rules: { required: 'Email is required', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Enter a valid email address', } } },
+        companyName: { label: 'Company Name', defaultValue: '', fieldName:'companyName', htmlFor: 'name', placeholder: 'Company Name', autoComplete: 'organization', isRequired: false, },
+        role: { label: 'Role', defaultValue: 'Founder', fieldName: 'role', htmlFor: 'select', isRequired: false, options: ['Founder', 'Hiring Manager', 'Product Owner', 'Other'] },
+    },
+    {
+        estimatedTimeline: { label: 'Estimated Timeline', defaultValue: 'ASAP', fieldName: 'estimatedTimeline', htmlFor: 'select', isRequired: true, options: ['ASAP', '1-2 weeks', '1 month', 'Not sure yet'] },
+        budgetRange: { label: 'Budget Range', defaultValue: '$200-$400', fieldName: 'budgetRange', htmlFor: 'select', isRequired: true, options: ['$200-$400', '$400-$800', '$800+', 'Not sure'] },
+        projectDescription: { label: 'Project Description', fieldName: 'projectDescription', htmlFor: 'name', placeholder: 'Tell me about your project here..', defaultValue: '', isRequired: true, rules: { required: 'Project Description is required' } },
+    }
+]
+export const DEFAULT_VALUES = Object.assign({}, ...FORM_DATA.map(step => Object.fromEntries(Object.entries(step).map(([key, field]) => [field.fieldName || key, field.defaultValue]))))
+export const ALL_STEPS_FIELDS = FORM_DATA.map(step => Object.keys(step).map(key => step[key].fieldName || key)) // [[first step field names], [second step], ...]

@@ -11,16 +11,13 @@ import { ICON_SIZE } from '@/Core/shared/global.constants'
 
 // NOTE: There is a slight code smell due to repetition of so many props, however, it is not paramount to fix it
 // NOTE: fixed height in Pricing Card due to annoying height inconsistencies
-export const PricingCard = ({ state: { planType, planDescription, pricePerMonth, featureList } = {}, ...rest }) => (
+// TODO: Remove pricePerMonth stuff since we don't need it anymore
+export const PricingCard = ({ state: { planType, planDescription, pricePerMonth, featureList, buttonText = 'Start a Demo Project', buttonHref = '/form-sample' } = {}, ...rest }) => (
     <Box component='article' aria-labelledby={`${planType}-title`} display='flex' flexDirection='column' gap={3} p={3} borderRadius={2} sx={theme => ({ backgroundColor: theme.palette.background.paper })} {...rest}>
-        <Box display='flex' flexDirection='column' gap={3} minHeight='230px' sx={{ alignItems: { xs: 'center', sm: 'flex-start' } }}>
+        <Box display='flex' flexDirection='column' gap={3} /*minHeight='230px'*/ sx={{ alignItems: { xs: 'center', sm: 'flex-start' } }}>
             <Typography id={`${planType}-title`} component='h3' fontWeight='bold' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }, textAlign: { xs: 'center', sm: 'start' } })}>{planType}</Typography>
             <Typography width='100%' height='100%' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, textAlign: { xs: 'center', sm: 'start' } })}>{planDescription}</Typography>
-            <Box display='flex' alignItems='center' gap={1}>
-                <Typography fontWeight='bold' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, })}>{`$${pricePerMonth}`}</Typography>
-                <Typography textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>/ month</Typography>
-            </Box>
-            <Button variant='outlined' fullWidth title={`Get Started with ${planType}`} aria-label={`Get Started with ${planType} plan`}>Get Started</Button>
+            <Button href={buttonHref} variant='outlined' fullWidth title={`Get Started with ${planType}`} aria-label={`Get Started with ${planType} plan`}>{buttonText}</Button>
         </Box>
         <Divider aria-hidden sx={{ width: '100%' }}>Features</Divider>
         <List dense aria-label={`${planType} features`} sx={{ height: '50%' }}>
@@ -33,10 +30,10 @@ export const PricingCard = ({ state: { planType, planDescription, pricePerMonth,
         </List>
     </Box>
 )
-export const LastPricingCard = ({ state: { planType, planDescription } = {}, sx, ...rest }) => (
+export const LastPricingCard = ({ state: { planType, planDescription, buttonText = 'Request Demo Project', buttonHref = '/form-sample' } = {}, sx, ...rest }) => (
     <Box component='article' aria-labelledby={`${planType}-title`} display='flex' flexDirection='column' alignItems='center' justifyContent='center' textAlign='start' width='100%' gap={3} p={3} borderRadius={2} sx={theme => ({ backgroundColor: theme.palette.background.paper, ...sx })} {...rest}>
         <Typography id={`${planType}-title`} component='h3' fontWeight='bold' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize }, })}>{planType}</Typography>
         <Typography width='50%' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>{planDescription}</Typography>
-        <Button variant='outlined' title={`Get Started with ${planType}`} aria-label={`Get Started with ${planType} plan`}>Get Started</Button>
+        <Button href={buttonHref} variant='outlined' title={`Get Started with ${planType}`} aria-label={`Get Started with ${planType} plan`}>{buttonText}</Button>
     </Box>
 )

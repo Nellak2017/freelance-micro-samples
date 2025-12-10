@@ -14,7 +14,7 @@ import { CustomDarkModeSwitch } from '@/UI/atoms/CustomDarkModeSwitch/CustomDark
 
 export const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
 export const LeftSlot = ({ state: { title = SITE_TITLE } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>)
-export const MiddleSlot = ({ state : { links = DEFAULT_NAV_LINKS } = {} } ) => {
+export const MiddleSlot = ({ state: { links = DEFAULT_NAV_LINKS } = {} }) => {
     const isMedium = useMediaQuery(theme => theme.breakpoints.down('md'))
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'))
     const [isOpen, setIsOpen] = useState(false)
@@ -31,11 +31,11 @@ export const MiddleSlot = ({ state : { links = DEFAULT_NAV_LINKS } = {} } ) => {
         )
         : (
             <Box component='ul' display='flex' alignItems='center' gap={isMedium ? 2 : 4} aria-label='Main Navigation Links'>
-                {links?.map(({ key, title, label }) => (<CustomLink title={title} key={key} component='li' aria-label={`Link to ${label}`}>{label}</CustomLink>))}
+                {links?.map(({ key, title, label, href }) => (<CustomLink title={title} key={key} component='li' href={href} aria-label={`Link to ${label}`}>{label}</CustomLink>))}
             </Box>
         )
 }
-export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}}) => (
+export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {} }) => (
     <Box display='flex' alignItems='center' gap={3}>
         <CustomDarkModeSwitch />
         {buttonData?.map(({ title, label, href }, index) => (

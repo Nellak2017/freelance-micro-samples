@@ -11,7 +11,7 @@ import { PREAMBLE_DATA } from '@/Core/components/MultiStepForm/DefaultSteps/Defa
 
 // TODO: Again.. use the Typography things defined in the theme so you don't have to overspecify the header stuff
 export const FormPreamble = ({ state: { header, subHeader, labels, } = PREAMBLE_DATA, activeStep = 0 }) => (<>
-    <Box component='header' mt={5} mb={3} id='multi-step-auth-form-title'><Typography component='h2' variant='h2' align='center'>{header}</Typography><Typography variant='subtitle2' align='center' sx={{ mt: 2 }}>{subHeader}</Typography></Box>
+    <Box component='header' mt={5} mb={3} id='multi-step-auth-form-title'><Typography component='h2' variant='h2' align='center'>{header}</Typography><Typography variant='subtitle2' align='center' sx={theme => ({ mt: 2, fontSize: theme.typography.h4.fontSize })}>{subHeader}</Typography></Box>
     <Stepper activeStep={activeStep} sx={{ py: 3 }} alternativeLabel>{labels.map(label => (<Step key={label}><StepLabel>{label}</StepLabel></Step>))}</Stepper>
 </>)
 export const GeneralMultiStepAuthForm = ({ state: { preambleState, activeStep = 0 } = {}, children, ...rest }) => {

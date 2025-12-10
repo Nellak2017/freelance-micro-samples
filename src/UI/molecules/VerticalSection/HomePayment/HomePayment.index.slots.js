@@ -6,7 +6,7 @@ import { LastPricingCard, PricingCard} from './HomePayment.helper.slots'
 
 const Top = ({ state: { header, subHeader } = TopData }) => (
     <Box component='header' aria-labelledby='pricing-header' display='flex' flexDirection='column' alignItems='center' width='50%' gap={3} >
-        <Typography id='pricing-header' width='100%' variant='h2' fontWeight='bold' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, })}>{header}</Typography>
+        <Typography id='pricing-header' width='100%' variant='h2' fontWeight='bold' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, md: theme.typography.h2.fontSize }, scrollMarginTop: '130px'})}>{header}</Typography>
         <Typography width='70%' textAlign='center' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, md: theme.typography.body1.fontSize }, })}>{subHeader}</Typography>
     </Box>
 )
