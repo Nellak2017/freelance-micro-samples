@@ -7,10 +7,11 @@ import { AppCacheProvider } from '@mui/material-nextjs/v16-pagesRouter'
 import createEmotionCache from '@/Core/shared/createEmotionCache'
 import { Analytics } from '@vercel/analytics/next'
 const clientCache = createEmotionCache({ key: 'css', enableCssLayer: false })
+const TITLE = 'Freelance Front End Developer - Showcasing My Skills' // TODO: Extract to constants file
 const App = ({ Component, pageProps }) => {
     const { theme } = useThemeMode()
     return (<>
-        <Head><title>Freelance Samples</title><meta name='viewport' content='width=device-width, initial-scale=1.0' /></Head>
+        <Head><title>{TITLE}</title><meta name='viewport' content='width=device-width, initial-scale=1.0' /></Head>
         <AppCacheProvider emotionCache={clientCache} {...pageProps}>
             <MUIThemeProvider theme={theme}>
                 <GlobalStyles styles={muiGlobalStyles({ theme })} />

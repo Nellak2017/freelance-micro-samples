@@ -22,13 +22,13 @@ const HomeFirstBottomFirstCard = () => {
 }
 const HomeFirstBottomSecondCard = () => (
     <FlexColCenter>
-        <Typography component='p' variant='h2' textAlign='center' aria-label='Over 100 clients' sx={darkContrastTextSX}>Projects</Typography>
+        <Typography component='p' variant='h2' textAlign='center' aria-label='Projects in frontend development' sx={darkContrastTextSX}>Projects</Typography>
         <Typography component='p' variant='h4' width='80%' textAlign='center' sx={darkContrastTextSX}>Landing pages, forms, and UI components.</Typography>
     </FlexColCenter>
 )
 const HomeFirstBottomThirdCard = () => (
     <FlexColCenter alignItems='center'>
-        <Typography component='p' variant='h2' textAlign='center' aria-label='Over 100 clients'>Tech used</Typography>
+        <Typography component='p' variant='h2' textAlign='center' aria-label='Tech used'>Tech used</Typography>
         <Typography component='p' variant='h4' width='80%' textAlign='center'>React, Next.js, Material UI, Redux</Typography>
     </FlexColCenter>
 )
