@@ -9,6 +9,7 @@ import LightForm from '../../../../../public/Form-Sample-Light.png'
 import Link from 'next/link'
 import { useThemeMode } from '@/Application/hooks/shared/useThemeMode'
 
+// TODO: Update Readme.md so that the description is there and so the link is there to the deployed site
 // TODO: Extract data of these to constants
 // TODO: Make compositional api instead of the map based one below
 const darkContrastTextSX = theme => ({ color: theme.palette.primary.contrastText })
