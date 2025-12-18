@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
-import { FormInputTextField } from '../../AuthForm/AuthForm.slots.helpers' // TODO: this needs to be moved to the general version not the specific one
+import { FormInputTextField } from '@/UI/molecules/FormInputTextField/FormInputTextField'
 import { GeneralMultiStepAuthForm } from './DefaultSteps.slots.helpers'
 import { useMultiStep } from '@/Application/hooks/organisms/MultiStepForm/useMultiStepForm'
 import { FORM_DATA } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
@@ -21,7 +21,7 @@ const SecondStepForm = ({ handleNext, handleBack, children, }) => {
         </>
     )
 }
-const SecondStepGridInput = React.memo(({ children, ...rest }) => (<Grid mb={3} size={{ xs: 12 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
+const SecondStepGridInput = ({ children, ...rest }) => (<Grid mb={3} size={{ xs: 12 }}><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>)
 const EstimatedTimelineInput = ({ register, errors, watch }) => (
     <SecondStepGridInput state={SECOND_STEP_DATA?.estimatedTimeline} services={{ register }} errors={errors} value={watch(SECOND_STEP_DATA?.estimatedTimeline?.fieldName) || SECOND_STEP_DATA?.estimatedTimeline?.options?.[0]} select>
         {SECOND_STEP_DATA?.estimatedTimeline?.options?.map(option => (<MenuItem key={option} value={option} sx={{ boxShadow: 'none' }}>{option}</MenuItem>))}

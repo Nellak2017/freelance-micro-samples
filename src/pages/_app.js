@@ -6,8 +6,8 @@ import { useThemeMode } from '@/Application/hooks/shared/useThemeMode'
 import { AppCacheProvider } from '@mui/material-nextjs/v16-pagesRouter'
 import createEmotionCache from '@/Core/shared/createEmotionCache'
 import { Analytics } from '@vercel/analytics/next'
+import { TITLE } from '@/Core/pages/_app.constants'
 const clientCache = createEmotionCache({ key: 'css', enableCssLayer: false })
-const TITLE = 'Freelance Front End Developer - Showcasing My Skills' // TODO: Extract to constants file
 const App = ({ Component, pageProps }) => {
     const { theme } = useThemeMode()
     return (<>

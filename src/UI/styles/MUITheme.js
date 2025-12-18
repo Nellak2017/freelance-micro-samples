@@ -1,11 +1,9 @@
 import { createTheme } from '@mui/material/styles'
 
-// TODO: Override Typography to have responsive style variants for the various things instead of inline sx everywhere!
 // Custom Properties: logoFilter, logoFilterActive, paperBackground
 const baseTheme = {
     spacing: num => ['4px', '8px', '16px', '32px', '48px', '56px',]?.[num - 1] || '4px',
     shape: { borderRadius: 8, },
-    typography: { caption: { fontSize: '10px' }, h6: { fontSize: '12px' }, h5: { fontSize: '14px' }, h4: { fontSize: '16px' }, h3: { fontSize: '24px' }, h2: { fontSize: '40px' }, h1: { fontSize: '64px' }, body1: { fontSize: '16px' }, body2: { fontSize: '14px' }, },
     components: {
         MuiButton: {
             styleOverrides: {
@@ -18,8 +16,7 @@ const baseTheme = {
                 })
             }, variants: [
                 {
-                    props: { variant: 'secondary' },
-                    style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, boxShadow: theme.shadows[1], '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, }, })
+                    props: { variant: 'secondary' }, style: ({ theme }) => ({ backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary, boxShadow: theme.shadows[1], '&:hover': { backgroundColor: theme.palette.background.paperBackground, color: theme.palette.text.secondary, }, })
                 },
                 {
                     props: { variant: 'outlined' },
@@ -30,11 +27,12 @@ const baseTheme = {
                 },
             ], defaultProps: { variant: 'contained', },
         },
-        MuiCssBaseline: { defaultProps: { enableColorScheme: false, },},
+        MuiCssBaseline: { defaultProps: { enableColorScheme: false, }, },
     },
-    breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536, }, },
+    breakpoints: { values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1450, }, },
     logoFilterActive: 'invert(100%) brightness(0%) invert(36%) sepia(80%) saturate(3178%) hue-rotate(238deg) brightness(99%) contrast(91%)',
 }
+const typography = { h1: { fontSize: '64px', [`@media (max-width:${baseTheme.breakpoints.values.md}px)`]: { fontSize: '40px' }, [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '32px' }, }, h2: { fontSize: '32px', [`@media (max-width:${baseTheme.breakpoints.values.md}px)`]: { fontSize: '24px' }, [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '20px' }, }, h3: { fontSize: '24px', [`@media (max-width:${baseTheme.breakpoints.values.md}px)`]: { fontSize: '20px' }, [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '16px' }, }, h4: { fontSize: '16px', [`@media (max-width:${baseTheme.breakpoints.values.md}px)`]: { fontSize: '14px' }, [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '12px' }, }, h5: { fontSize: '14px' }, h6: { fontSize: '12px' }, subtitle1: { fontSize: '16px', [`@media (max-width:${baseTheme.breakpoints.values.md}px)`]: { fontSize: '14px' }, [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '12px' }, }, subtitle2: { fontSize: '14px', [`@media (max-width:${baseTheme.breakpoints.values.md}px)`]: { fontSize: '12px' }, [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '10px' }, }, body1: { fontSize: '16px', [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '14px' }, }, body2: { fontSize: '14px', [`@media (max-width:${baseTheme.breakpoints.values.sm}px)`]: { fontSize: '12px' }, }, caption: { fontSize: '10px', }}
 const sharedPalette = {
     primary: { main: '#2196F3', light: '#4DABF5', dark: '#1769AA', contrastText: '#FFFFFF', },
     secondary: { main: '#3D5AFE', light: '#637BFE', dark: '#2A3EB1', contrastText: '#FFFFFF' },
@@ -46,6 +44,7 @@ const sharedPalette = {
 }
 export const lightTheme = createTheme({
     cssVariables: false,
+    ...baseTheme,
     palette: {
         mode: 'light',
         background: { default: '#faf9f4', paper: '#fff', paperBackground: '#f3f0e6' },
@@ -53,10 +52,11 @@ export const lightTheme = createTheme({
         divider: 'rgba(34, 28, 56, 0.15)',
         ...sharedPalette,
     },
-    ...baseTheme, logoFilter: 'invert(100%) brightness(0%)', /* Used for logo filter in Nav styles */
+    typography, logoFilter: 'invert(100%) brightness(0%)', /* Used for logo filter in Nav styles */
 })
 export const theme = createTheme({ // AKA: Dark Theme
     cssVariables: false,
+    ...baseTheme,
     palette: {
         mode: 'dark',
         background: { default: '#221c38', paper: '#312a4c', paperBackground: '#302A31' },
@@ -64,5 +64,5 @@ export const theme = createTheme({ // AKA: Dark Theme
         divider: 'rgba(246, 233, 171, 0.12)',
         ...sharedPalette,
     },
-    ...baseTheme, logoFilter: 'invert(0%) brightness(100%)', /* see also (convert black to any hex with filter): https://codepen.io/sosuke/pen/Pjoqqp */
+    typography, logoFilter: 'invert(0%) brightness(100%)', /* see also (convert black to any hex with filter): https://codepen.io/sosuke/pen/Pjoqqp */
 }) // see also: https://bareynol.github.io/mui-theme-creator/

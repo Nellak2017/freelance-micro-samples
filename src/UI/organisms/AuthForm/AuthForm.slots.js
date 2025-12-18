@@ -1,29 +1,22 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React from 'react'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
-import { useForm } from 'react-hook-form'
+import Typography from '@mui/material/Typography'
 import { StyledAuthForm, SignInContainer, } from './AuthForm.elements.js'
 import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '@/Infra/workflows/AuthForm.handlers.js'
 import { MAX_WIDTH, SIGN_IN_DATA, SIGN_UP_DATA, FORGOT_PASSWORD_BUTTON_DATA, RESET_PASSWORD_BUTTON_DATA } from '@/Core/components/AuthForm/AuthForm.constants.js'
 import { LargeLogo } from '@/UI/atoms/AvatarLink/AvatarLink.slots.js'
 import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } from './AuthForm.slots.helpers.js'
+import { useAuthForm } from '@/Application/hooks/organisms/AuthForm/useAuthForm.js'
 
-// TODO: Use the responsive header variants you will define later instead so it is simpler
-// TODO: Responsive (especially for horizontal phones!), Semantic last check, Light House Check
-// TODO: Fix type error when form submits with nothing in it
-// TODO: Consider extracting the hook below here to a custom hook
-// TODO: Experiment with Paper variant outlined for a better look
-const GeneralAuthForm = ({ state: { emailButtonText = '', title = '', snackbarText = '' } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
-    const router = useRouter()
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
-    const handleOpen = () => setIsSnackbarOpen(true)
-    const handleClose = (_, reason) => reason === 'clickaway' ? undefined : setIsSnackbarOpen(false)
+const GeneralAuthForm = ({ customHook = useAuthForm, state: { emailButtonText = '', title = '', snackbarText = '', initialFormState = {} } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
+    const { state, services } = customHook?.(initialFormState) || {}
+    const { router, isSnackbarOpen, errors } = state || {}
+    const { handleOpen, handleClose, handleSubmit, register } = services || {}
     return (
         <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, handleOpen, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
-            <LargeLogo state={{ size: 96 }} /><h2 id='auth-form-title'>{title}</h2>
+            <LargeLogo state={{ size: 96 }} /><Typography id='auth-form-title' variant='h2'>{title}</Typography>
             {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}
             <SignInContainer><Button type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>
             <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={handleClose}><Alert onClose={handleClose} severity='success' variant='filled' sx={{ color: 'text.primary' }}>{snackbarText}</Alert></Snackbar>
@@ -44,4 +37,4 @@ export const SignUp = () => (
         <CallToAction state={SIGN_UP_DATA} /><EmailFormInput /><PasswordFormInput />
     </GeneralAuthForm>)
 export const ForgotPassword = () => (<GeneralAuthForm state={FORGOT_PASSWORD_BUTTON_DATA} services={{ handleEmailFormSubmit: handleRequestPasswordReset }}><EmailFormInput /></GeneralAuthForm>)
-export const ResetPassword = () => (<GeneralAuthForm state={RESET_PASSWORD_BUTTON_DATA} services={{ handleEmailFormSubmit: handleResetPassword }}><PasswordFormInput /></GeneralAuthForm>)
+export const ResetPassword = () => (<GeneralAuthForm state={RESET_PASSWORD_BUTTON_DATA} services={{ handleEmailFormSubmit: handleResetPassword }}><EmailFormInput style={{ display: 'none' }} /><PasswordFormInput /></GeneralAuthForm>)  // NOTE: Login field should be there but hidden for password fields https://goo.gl/9p2vKq

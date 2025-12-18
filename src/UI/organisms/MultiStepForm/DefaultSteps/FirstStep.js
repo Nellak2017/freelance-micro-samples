@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
-import { FormInputTextField } from '../../AuthForm/AuthForm.slots.helpers' // TODO: this needs to be moved to the general version not the specific one
+import { FormInputTextField } from '@/UI/molecules/FormInputTextField/FormInputTextField'
 import { GeneralMultiStepAuthForm } from './DefaultSteps.slots.helpers'
 import { useMultiStep } from '@/Application/hooks/organisms/MultiStepForm/useMultiStepForm'
 import { FORM_DATA } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
@@ -18,7 +18,7 @@ const FirstStepForm = ({ handleNext, children }) => {
         </>
     )
 }
-const FirstStepGridInput = React.memo(({ children, ...rest }) => (<Grid mb={3} size={{ xs: 12, sm: 6 }} role='none'><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>))
+const FirstStepGridInput = ({ children, ...rest }) => (<Grid mb={3} size={{ xs: 12, sm: 6 }} role='none'><FormInputTextField {...rest}>{children}</FormInputTextField></Grid>)
 const FullNameInput = ({ register, errors }) => (<FirstStepGridInput state={FIRST_STEP_DATA?.fullName} services={{ register }} errors={errors} />)
 const EmailInput = ({ register, errors }) => (<FirstStepGridInput state={FIRST_STEP_DATA?.email} services={{ register }} errors={errors} />)
 const CompanyNameInput = ({ register, errors }) => (<FirstStepGridInput state={FIRST_STEP_DATA?.companyName} services={{ register }} errors={errors} />)

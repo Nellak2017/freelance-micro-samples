@@ -41,5 +41,4 @@ export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}
         {buttonData?.map(({ title, label, href }, index) => (
             <Button key={`Home-Nav-${label}-Button`} title={title} href={href} variant={['contained', 'secondary']?.[index % 2]}>{label}</Button>
         ))}
-    </Box>
-)
+    </Box>)

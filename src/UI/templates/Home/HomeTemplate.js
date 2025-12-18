@@ -11,13 +11,13 @@ export const HomeTemplate = () => (
         <Box id='main-content' component='main' display='flex' flexDirection='column' alignItems='center' width='100%'>
             <VerticalSection aria-label='First Home Section' />
             <VerticalSection aria-label='Second Home Section' sx={theme => ({ backgroundColor: theme.palette.primary.main })}>
-                {DefaultChildrenHomeSecond}
+                <DefaultChildrenHomeSecond />
             </VerticalSection>
             <VerticalSection aria-label='Payment Tier Home Section'>
-                {DefaultChildrenHomePayment}
+                <DefaultChildrenHomePayment/>
             </VerticalSection>
             <VerticalSection aria-label='Last Home Section' sx={theme => ({ backgroundColor: theme.palette.primary.main })}>
-                {DefaultChildrenHomeLast}
+                <DefaultChildrenHomeLast />
             </VerticalSection>
         </Box>
         <Footer />

@@ -1,0 +1,1 @@
+export const HOME_LAST_DATA = { header: 'Have a Project in Mind?', description: 'Check my portfolio and get in touch for your frontend demo project.', buttonLabel: 'Work With Me', buttonHref: '/form-sample' }

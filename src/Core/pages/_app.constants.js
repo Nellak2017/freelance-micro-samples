@@ -1,0 +1,1 @@
+export const TITLE = 'Freelance Front End Developer - Showcasing My Skills'

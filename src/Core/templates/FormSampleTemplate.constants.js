@@ -1,0 +1,1 @@
+export const FORM_SAMPLE_PAGE_NAV_LINKS = [{ key: 'Home', title: 'Home', label: 'Home', href: '/' }]

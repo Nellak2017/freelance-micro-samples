@@ -1,8 +1,9 @@
 import Box from '@mui/material/Box'
 import { LeftSlot, MiddleSlot, RightSlot } from './Nav.slots'
-import { MAX_CONTENT_WIDTH } from '@/Core/shared/global.constants'
+import { PageContainer } from '../PageContainer/PageContainer'
 
-export const StandardContainer = ({ children, ...props }) => (<Box display='flex' maxWidth={MAX_CONTENT_WIDTH} width='100%' alignItems='center' justifyContent='space-between' gap={3} {...props}>{children}</Box>)
+// NOTE: PageContainer removes the extra constant but it increases html depth by 1
+export const StandardContainer = ({ children, ...props }) => (<PageContainer><Box display='flex' width='100%' alignItems='center' justifyContent='space-between' gap={3} {...props}>{children}</Box></PageContainer>)
 export const CenterContainer = ({ children, ...props }) => (<Box display='flex' alignItems='center' justifyContent={{ xs: 'flex-start', md: 'center' }} width={{ xs: 'fit-content', md: '100%' }} {...props}>{children}</Box>)
 const DefaultChildren = <>
     <StandardContainer px={3} py={3} flexDirection={{ xs: 'column', md: 'row' }}>

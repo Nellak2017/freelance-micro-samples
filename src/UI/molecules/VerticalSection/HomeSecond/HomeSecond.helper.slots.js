@@ -7,7 +7,7 @@ export const GridItem = ({ children }) => (<Box component='li' minWidth={0} heig
 export const TopGridItem = ({ Icon }) => (<Box display='flex' alignItems='center' justifyContent='space-between'><StandardIcon Icon={Icon} /><StandardIcon Icon={LuArrowUpRight} /></Box>)
 export const BottomGridItem = ({ heading, description }) => (
     <Box display='flex' flexDirection='column' alignItems='flex-start' gap={3}>
-        <Typography variant='h3' textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.h4.fontSize, sm: theme.typography.h3.fontSize }, fontWeight: 'bold' })}>{heading}</Typography>
-        <Typography textAlign='start' sx={theme => ({ fontSize: { xs: theme.typography.body2.fontSize, sm: theme.typography.body1.fontSize, } })}>{description}</Typography>
+        <Typography variant='h3' textAlign='start' fontWeight='bold'>{heading}</Typography>
+        <Typography variant='body1' component='p' textAlign='start' >{description}</Typography>
     </Box>
 )

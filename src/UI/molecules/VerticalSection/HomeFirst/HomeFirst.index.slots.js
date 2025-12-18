@@ -1,27 +1,27 @@
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { MAX_CONTENT_WIDTH } from '@/Core/shared/global.constants'
 import { GAP } from '@/Core/components/VerticalSection/VerticalSection.slots.constants'
-import { HomeFirstCard, FlexColCenter, FlexRow } from './HomeFirst.helper.slots'
-import { HomeFirstBottomCards } from './HomeFirst.cards.slots'
+import { FlexColCenter, FlexRow } from './HomeFirst.helper.slots'
+import { HomeFirstDefaultBottomCards } from './HomeFirst.cards.slots'
 import { HOME_FIRST_TOP } from '@/Core/components/VerticalSection/HomeFirst.constants'
+import { PageContainer } from '../../PageContainer/PageContainer'
 
 export const HomeFirstTop = ({ state: { header, subHeader, primaryButton, secondaryButton, } = HOME_FIRST_TOP }) => (
-    <Box id='home-first-top' component='header' display='flex' flexDirection='column' gap={GAP} maxWidth={MAX_CONTENT_WIDTH * .60} aria-labelledby='home-first-header'>
-        <Typography id='home-first-header' component='h1' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h3.fontSize, sm: theme.typography.h2.fontSize, md: theme.typography.h1.fontSize } })}>{header}</Typography>
-        <Typography component='h2' fontWeight='normal' textAlign='center' mx={GAP} sx={theme => ({ fontSize: { xs: theme.typography.h5.fontSize, sm: theme.typography.h4.fontSize, md: theme.typography.h3.fontSize } })}>{subHeader}</Typography>
-        <Box id='home-first-button-group' display='flex' justifyContent='center' gap={GAP}>
-            <Button href={primaryButton?.href} aria-label={primaryButton?.label} title={primaryButton?.label}>{primaryButton?.label}</Button>
-            <Button href={secondaryButton?.href} aria-label={secondaryButton?.label} variant='secondary' title={secondaryButton?.label}>{secondaryButton?.label}</Button>
+    <PageContainer sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box id='home-first-top' component='header' display='flex' flexDirection='column' gap={GAP} maxWidth='60%' aria-labelledby='home-first-header'>
+            <Typography id='home-first-header' component='h1' variant='h1' fontWeight='normal' textAlign='center' mx={GAP}>{header}</Typography>
+            <Typography component='h2' variant='h3' fontWeight='normal' textAlign='center' mx={GAP}>{subHeader}</Typography>
+            <Box id='home-first-button-group' display='flex' justifyContent='center' gap={GAP}>
+                <Button href={primaryButton?.href} aria-label={primaryButton?.label} title={primaryButton?.label}>{primaryButton?.label}</Button>
+                <Button href={secondaryButton?.href} aria-label={secondaryButton?.label} variant='secondary' title={secondaryButton?.label}>{secondaryButton?.label}</Button>
+            </Box>
         </Box>
-    </Box>
+    </PageContainer>
 )
-// TODO: Fix the code smell of passing components as a prop like this. Prefer composition
-export const HomeFirstBottom = ({ state: { cards = HomeFirstBottomCards } = {} }) => (
+export const HomeFirstBottom = ({ children = HomeFirstDefaultBottomCards }) => (
     <FlexColCenter id='home-first-bottom' component='section' aria-labelledby='reviews-title' gap={GAP}>
         <FlexRow width={{ xs: '70%', sm: '50%', md: '100%' }} alignItems='flex-end' flexDirection={{ xs: 'column', md: 'row' }}>
-            {cards?.map(({ key, Component, sx }) => <HomeFirstCard key={key} sx={sx}>{<Component />}</HomeFirstCard>)}
+            {children}
         </FlexRow>
-    </FlexColCenter>
-)
+    </FlexColCenter>)

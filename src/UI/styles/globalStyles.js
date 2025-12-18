@@ -10,7 +10,7 @@ export const muiGlobalStyles = ({ theme }) => ({
     '*': { boxSizing: 'border-box', margin: 0, padding: 0, '::selection': { background: theme.palette.primary.main, color: theme.palette.text.primary, }, },
     'a': { textDecoration: 'none', },
     'body': { margin: 0, padding: 0, backgroundColor: theme.palette.background.default, color: theme.palette.text.primary, overflowX: 'hidden', },
-    // -- TODO: these are subject to custom design below
+    // -- Custom design below
     '*::-webkit-scrollbar': { width: '1em', },
     '*::-webkit-scrollbar-track': { WebkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.3)', },
     '*::-webkit-scrollbar-thumb': { backgroundColor: 'darkgrey', outline: '1px solid slategrey', },

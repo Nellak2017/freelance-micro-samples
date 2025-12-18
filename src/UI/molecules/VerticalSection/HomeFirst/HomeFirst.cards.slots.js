@@ -3,52 +3,40 @@ import Image from 'next/image'
 import { SiSpeedtest } from 'react-icons/si'
 import { ICON_SIZE } from '@/Core/shared/global.constants'
 import { GAP } from '@/Core/components/VerticalSection/VerticalSection.slots.constants'
-import { FlexColCenter, FlexRow } from './HomeFirst.helper.slots'
-import DarkForm from '../../../../../public/Form-Sample-Dark.png'
-import LightForm from '../../../../../public/Form-Sample-Light.png'
+import { FlexColCenter } from './HomeFirst.helper.slots'
 import Link from 'next/link'
 import { useThemeMode } from '@/Application/hooks/shared/useThemeMode'
+import { HOME_FIRST_CARDS } from '@/Core/components/VerticalSection/HomeFirst.constants'
+import { HomeFirstCard } from './HomeFirst.helper.slots'
 
-// TODO: Update Readme.md so that the description is there and so the link is there to the deployed site
-// TODO: Extract data of these to constants
-// TODO: Make compositional api instead of the map based one below
+const { FIRST_CARD, SECOND_CARD, THIRD_CARD, FOURTH_CARD, FIFTH_CARD } = HOME_FIRST_CARDS
 const darkContrastTextSX = theme => ({ color: theme.palette.primary.contrastText })
-const HomeFirstBottomFirstCard = () => {
+const CommonCard = ({ state: { header, description }, sx }) => (
+    <FlexColCenter>
+        <Typography component='p' variant='h2' textAlign='center' aria-label={header} sx={sx}>{header}</Typography>
+        <Typography component='p' variant='h4' width='80%' textAlign='center' sx={sx}>{description}</Typography>
+    </FlexColCenter>
+)
+const HomeFirstBottomFirstCard = ({ state: { lightImage, darkImage } = FIRST_CARD }) => {
     const { mode } = useThemeMode()
-    return ( // TODO: Fix accidental complexity with Link here
-        <Link href='/form-sample'>
-            <Image src={mode === 'light' ? LightForm : DarkForm} alt='Stock image' aria-hidden fill priority sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' style={{ objectFit: 'cover' }} />
+    return ( // NOTE: Ignoring the next.js warning here since it is not possible to fix it. (installHook.js:1 Image with src "/_next/static/media/Form-Sample-Dark.db18b4f4.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative)
+        <Link href='/form-sample' aria-label='Open contact form'>
+            <Image src={mode === 'light' ? lightImage : darkImage} alt='Stock image' aria-hidden fill priority sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' style={{ objectFit: 'cover' }} />
         </Link>
     )
 }
-const HomeFirstBottomSecondCard = () => (
-    <FlexColCenter>
-        <Typography component='p' variant='h2' textAlign='center' aria-label='Projects in frontend development' sx={darkContrastTextSX}>Projects</Typography>
-        <Typography component='p' variant='h4' width='80%' textAlign='center' sx={darkContrastTextSX}>Landing pages, forms, and UI components.</Typography>
-    </FlexColCenter>
-)
-const HomeFirstBottomThirdCard = () => (
-    <FlexColCenter alignItems='center'>
-        <Typography component='p' variant='h2' textAlign='center' aria-label='Tech used'>Tech used</Typography>
-        <Typography component='p' variant='h4' width='80%' textAlign='center'>React, Next.js, Material UI, Redux</Typography>
-    </FlexColCenter>
-)
-const HomeFirstBottomFourthCard = () => (
-    <FlexColCenter>
-        <Typography component='p' variant='h2' sx={darkContrastTextSX}>7+</Typography>
-        <Typography component='p' variant='h4' width='80%' textAlign='center' sx={darkContrastTextSX}>Years of dedicated practice, but new to Freelancing.</Typography>
-    </FlexColCenter>
-)
-const HomeFirstBottomFifthCard = () => (
+const HomeFirstBottomFifthCard = ({ state: { description } = FIFTH_CARD }) => (
     <FlexColCenter gap={GAP} sx={{ 'path': darkContrastTextSX }}>
         <SiSpeedtest size={ICON_SIZE} aria-hidden focusable='false' />
-        <Typography component='p' variant='h3' textAlign='center' sx={darkContrastTextSX}>Check my Upwork portfolio and get in touch</Typography>
+        <Typography component='p' variant='h3' textAlign='center' sx={darkContrastTextSX}>{description}</Typography>
     </FlexColCenter>
 )
-export const HomeFirstBottomCards = [
-    { key: 'HomeFirstBottomFirstCard', Component: HomeFirstBottomFirstCard, sx: { aspectRatio: { xs: '1/1', md: '6/10' } }, },
-    { key: 'HomeFirstBottomSecondCard', Component: HomeFirstBottomSecondCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '8/10' }, backgroundColor: theme.palette.primary.main, }), },
-    { key: 'HomeFirstBottomThirdCard', Component: HomeFirstBottomThirdCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '1/1' }, backgroundColor: theme.palette.background.paper }) },
-    { key: 'HomeFirstBottomFourthCard', Component: HomeFirstBottomFourthCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '8/10' }, backgroundColor: theme.palette.secondary.main, color: theme.palette.secondary.contrastText, }) },
-    { key: 'HomeFirstBottomFifthCard', Component: HomeFirstBottomFifthCard, sx: theme => ({ aspectRatio: { xs: '1/1', md: '6/10' }, backgroundColor: theme.palette.primary.light, }), },
-]
+export const HomeFirstDefaultBottomCards = (
+    <>
+        <HomeFirstCard aspectRatio={{ xs: '1/1', md: '6/10' }}><HomeFirstBottomFirstCard /></HomeFirstCard>
+        <HomeFirstCard aspectRatio={{ xs: '1/1', md: '8/10' }} backgroundColor='primary.main'><CommonCard state={SECOND_CARD} sx={darkContrastTextSX} /></HomeFirstCard>
+        <HomeFirstCard aspectRatio={{ xs: '1/1' }} backgroundColor='background.paper'><CommonCard state={THIRD_CARD} /></HomeFirstCard>
+        <HomeFirstCard aspectRatio={{ xs: '1/1', md: '8/10' }} backgroundColor='secondary.main' color='secondary.contrastText'><CommonCard state={FOURTH_CARD} sx={darkContrastTextSX} /></HomeFirstCard>
+        <HomeFirstCard aspectRatio={{ xs: '1/1', md: '6/10' }} backgroundColor='primary.light'><HomeFirstBottomFifthCard /></HomeFirstCard>
+    </>
+)

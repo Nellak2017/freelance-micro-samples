@@ -1,4 +1,3 @@
-// TODO: Make this section more data oriented. Meaning instead of hard coded buttons with hard coded href you fix it
 const starterFeatures = [
     'Responsive and Mobile first design',
     'Pixel-perfect implementation from a design',
@@ -17,19 +16,23 @@ export const BottomData = [
         key: 'Landing Pages',
         planType: 'Landing Pages',
         planDescription: 'One page static landing page built with React/Next.js.',
-        pricePerMonth: 39,
         featureList: starterFeatures,
+        buttonText: 'Start a Demo Project', 
+        buttonHref: '/form-sample',
     },
     {
         key: 'Multi-page static site',
         planType: 'Multi-page static site',
         planDescription: 'Small multi-page sites or dashboards.',
-        pricePerMonth: 99,
         featureList: enterpriseFeatures,
+        buttonText: 'Start a Demo Project', 
+        buttonHref: '/form-sample',
     },
     {
         key: 'Custom components',
         planType: 'Custom components',
         planDescription: 'UI components, forms, or static apps you need.',
+        buttonText: 'Request Demo Project', 
+        buttonHref: '/form-sample',
     },
 ]

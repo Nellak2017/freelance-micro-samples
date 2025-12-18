@@ -1,9 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v16-pagesRouter'
 import createEmotionCache from '@/Core/shared/createEmotionCache'
-// TODO: get logo and update href
-// TODO: Extract to proper constants file
-const { LOGO, TITLE, DESCRIPTION, PAGE_TOPIC, PAGE_TYPE, KEY_WORDS_DESCRIPTION } = { LOGO: '/Freelance-Sample-Logo.png', TITLE: 'Freelance Front End Developer - Showcasing My Skills', PAGE_TOPIC: 'Freelancing', PAGE_TYPE: 'Static', DESCRIPTION: 'A website showcasing my expertise as a Freelance Front End Developer specializing in React, static websites, and frontend development.', KEY_WORDS_DESCRIPTION: 'Freelance Front End Developer, frontend development, React components, static websites, Next.js, React' }
+import { LOGO, TITLE, DESCRIPTION, PAGE_TOPIC, PAGE_TYPE, KEY_WORDS_DESCRIPTION } from '@/Core/pages/_document.constants'
 export default function MyDocument(props) {
   return (
     <Html lang='en'>

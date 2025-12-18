@@ -1,0 +1,1 @@
+export const SUCCESS_DATA = { header: 'Thank you!', description: 'This is a portfolio demo form. No data is submitted or emailed.' }
