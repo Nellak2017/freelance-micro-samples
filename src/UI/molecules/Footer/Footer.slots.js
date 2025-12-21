@@ -8,7 +8,7 @@ import { PageContainer } from '../PageContainer/PageContainer'
 // TODO: Fix the inconsistent gap between columns on < sm screens when it is in flex-direction: column
 const { left, right } = CLOSING_REMARKS
 const Column = ({ state }) => (
-    <Box height='100%' display='flex' flexDirection='column' gap={2} >
+    <Box display='flex' flexDirection='column' gap={2} >
         <Typography component='h3' variant='h3'>{state?.title}</Typography>
         <Box display='flex' flexDirection='column' gap={2}>
             {state?.links?.map(({ href, label }) => (<NextLink key={label} href={href ?? '/'}>{label}</NextLink>))}

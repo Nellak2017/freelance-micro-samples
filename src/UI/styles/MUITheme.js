@@ -9,7 +9,7 @@ const baseTheme = {
             styleOverrides: {
                 root: ({ theme, ownerState }) => ({
                     textTransform: 'none', minWidth: '85px', color: theme.palette[ownerState?.color || 'primary'].contrastText, backgroundColor: theme.palette[ownerState?.color || 'primary'].main,
-                    borderRadius: '32px', paddingBlock: '12px', [theme.breakpoints.up('sm')]: { paddingBlock: '6px' },
+                    borderRadius: '32px', paddingBlock: '12px', [theme.breakpoints.up('sm')]: { paddingBlock: '6px' }, textAlign: 'center', 
                     '& path': { color: theme.palette[ownerState?.color || 'primary'].contrastText, },
                     '&:hover': { backgroundColor: theme.palette[ownerState?.color || 'primary'].dark, color: theme.palette[ownerState?.color || 'primary'].contrastText, fontWeight: 'bold', },
                     '&:active, &:focus': { backgroundColor: theme.palette[ownerState?.color || 'primary'].darker ?? theme.palette[ownerState?.color || 'primary'].dark, color: theme.palette[ownerState?.color || 'primary'].contrastText, },

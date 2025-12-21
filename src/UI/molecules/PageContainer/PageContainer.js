@@ -1,2 +1,2 @@
 import Container from '@mui/material/Container'
-export const PageContainer = ({ children, sx, ...props }) => (<Container maxWidth='xl' disableGutters sx={{ px: { xs: 2, sm: 3 }, width: '100%', ...sx }} {...props}> {children}</Container>)
+export const PageContainer = ({ children, sx, ...props }) => (<Container maxWidth='xl' disableGutters sx={{ px: { xs: 2, sm: 3 }, width: '100%', display: 'flex', justifyContent: 'center', ...sx }} {...props}> {children}</Container>)
