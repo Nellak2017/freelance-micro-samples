@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import InputLabel from '@mui/material/InputLabel'
 import { InputSection } from './AuthForm.elements.js'
-import { EMAIL_DATA, PASSWORD_DATA } from '@/Core/components/AuthForm/AuthForm.constants.js'
+import { EMAIL_FIELD, PASSWORD_FIELD } from '@/Core/components/AuthForm/AuthForm.constants.js'
 import { FormInputTextField } from '@/UI/molecules/FormInputTextField/FormInputTextField.js'
 
 export const ForgotPasswordLink = ({ state: { forgotPasswordText, forgotPasswordRedirect } = {} }) => (<Link href={forgotPasswordRedirect} component={NextLink} aria-label='Forgot your password link'>{forgotPasswordText}</Link>)
@@ -16,5 +16,5 @@ const FormInput = ({ state, services, errors, ...rest }) => (
         <FormInputTextField state={state} services={services} errors={errors} />
     </InputSection>
 )
-export const EmailFormInput = ({ errors, register, ...rest }) => (<FormInput state={EMAIL_DATA} services={{ register }} errors={errors} {...rest} />) // NOTE: ...rest is here to support the hidden requirement for password fields needing a login component https://goo.gl/9p2vKq
-export const PasswordFormInput = ({ errors, register }) => (<FormInput state={PASSWORD_DATA} services={{ register }} errors={errors} />)
+export const EmailFormInput = ({ errors, register, state = EMAIL_FIELD, ...rest }) => (<FormInput state={state} services={{ register }} errors={errors} {...rest} />) // NOTE: ...rest is here to support the requirement for password fields needing a login component https://goo.gl/9p2vKq
+export const PasswordFormInput = ({ errors, register }) => (<FormInput state={PASSWORD_FIELD} services={{ register }} errors={errors} />)

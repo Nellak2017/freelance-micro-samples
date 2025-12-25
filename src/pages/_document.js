@@ -2,6 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 import { DocumentHeadTags, documentGetInitialProps } from '@mui/material-nextjs/v16-pagesRouter'
 import createEmotionCache from '@/Core/shared/createEmotionCache'
 import { LOGO, TITLE, DESCRIPTION, PAGE_TOPIC, PAGE_TYPE, KEY_WORDS_DESCRIPTION } from '@/Core/pages/_document.constants'
+// TODO: Make the thumbnail for IG and facebook and X to be higher resolution, it is blurry right now
 export default function MyDocument(props) {
   return (
     <Html lang='en'>
