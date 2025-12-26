@@ -44,10 +44,7 @@ export const MiddleSlot = ({ state: { links = DEFAULT_NAV_LINKS } = {} }) => {
 export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}, services: { makeButtonData = makeAuthenticatedNavButtonData } = {} }) => {
     const router = useRouter()
     const { user, setAuth } = useAuth()
-    const usedButtonData = useMemo(() => user
-        ? makeButtonData({ 'Log out': async () => { await handleSignOut({ showError: console.error, showSuccess: console.log, router }); setAuth(null) } })
-        : buttonData
-        , [user, makeButtonData, setAuth, router, buttonData])
+    const usedButtonData = useMemo(() => user ? makeButtonData({ 'Log out': async () => { await handleSignOut({ router, setAuth }) } }) : buttonData , [user, makeButtonData, setAuth, router, buttonData])
     const usedColor = useMemo(() => user ? 'error' : 'primary', [user])
     return (
         <Box display='flex' alignItems='center' gap={3}>

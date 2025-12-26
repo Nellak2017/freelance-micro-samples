@@ -14,7 +14,7 @@ export const HomeTemplate = () => (
                 <DefaultChildrenHomeSecond />
             </VerticalSection>
             <VerticalSection aria-label='Payment Tier Home Section'>
-                <DefaultChildrenHomePayment/>
+                <DefaultChildrenHomePayment />
             </VerticalSection>
             <VerticalSection aria-label='Last Home Section' sx={theme => ({ backgroundColor: theme.palette.primary.main })}>
                 <DefaultChildrenHomeLast />

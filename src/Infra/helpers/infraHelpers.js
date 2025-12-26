@@ -1,0 +1,1 @@
+export const api = async (url, options) => fetch(url, options).then(r => r.json()) // prevents double awaits
