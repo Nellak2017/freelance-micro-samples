@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
@@ -12,9 +12,7 @@ import Link from 'next/link'
 import { SITE_TITLE, DEFAULT_NAV_LINKS, DEFAULT_NAV_BUTTON_DATA } from '@/Core/components/Nav/Nav.constants'
 import { CustomDarkModeSwitch } from '@/UI/atoms/CustomDarkModeSwitch/CustomDarkModeSwitch'
 import { makeAuthenticatedNavButtonData } from '@/Core/components/Nav/Nav.domain'
-import { useRouter } from 'next/router'
-import { handleSignOut } from '@/Infra/workflows/AuthForm.handlers'
-import { useAuth } from '@/Application/hooks/shared/useAuth'
+import { useRightSlot} from '@/Application/hooks/molecules/Nav/useRightSlot'
 
 export const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
 export const LeftSlot = ({ state: { title = SITE_TITLE } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>)
@@ -42,10 +40,8 @@ export const MiddleSlot = ({ state: { links = DEFAULT_NAV_LINKS } = {} }) => {
 // NOTE: makeButtonData allows you to inject custom functions into the button that is not accessible from the Core layer, such as Infra functions
 // NOTE: buttonData is for not logged in mode, makeButtonData is for logged in mode
 export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}, services: { makeButtonData = makeAuthenticatedNavButtonData } = {} }) => {
-    const router = useRouter()
-    const { user, setAuth } = useAuth()
-    const usedButtonData = useMemo(() => user ? makeButtonData({ 'Log out': async () => { await handleSignOut({ router, setAuth }) } }) : buttonData , [user, makeButtonData, setAuth, router, buttonData])
-    const usedColor = useMemo(() => user ? 'error' : 'primary', [user])
+    const { state } = useRightSlot({ buttonData, makeButtonData })
+    const { usedButtonData, usedColor } = state
     return (
         <Box display='flex' alignItems='center' gap={3}>
             <CustomDarkModeSwitch />
