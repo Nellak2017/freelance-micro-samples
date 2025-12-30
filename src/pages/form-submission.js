@@ -6,7 +6,7 @@ export const getServerSideProps = async (ctx) => {
     const supabase = createClient(ctx)
     const { data: authData, error: authError } = await supabase.auth.getClaims()
     if (authError || !authData?.claims || authData?.claims?.role !== 'authenticated') return { redirect: { destination: '/', permanent: false } }
-    const { data, error } = await handleGetForm()
+    const { data, error } = await handleGetForm({ ctx })
     return error ? { props: { fields: [] } } : { props: { fields: data } }
 }
 export default FormSubmission

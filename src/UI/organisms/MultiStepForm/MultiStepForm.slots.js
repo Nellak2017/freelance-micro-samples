@@ -8,6 +8,7 @@ import { Success } from './DefaultSteps/Success'
 import { CaroselView } from '@/UI/molecules/CaroselView/CaroselView'
 import { useQueryParam } from '@/Application/hooks/shared/useQueryParam'
 import { ALL_STEPS_FIELDS, DEFAULT_VALUES } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
+import { handleSaveForm } from '@/Infra/workflows/MultiStepForm.handlers'
 
 export const StepForm = ({ serverStep }) => {
     const [activeStep, updateStep] = useQueryParam('form-step', serverStep)
@@ -17,7 +18,11 @@ export const StepForm = ({ serverStep }) => {
         if (isValid) { updateStep(Number(activeStep) + 1) }
     }
     const prevStep = () => updateStep(Number(activeStep) - 1)
-    const handleFormSubmit = () => { updateStep(Number(activeStep) + 1) }
+    const handleFormSubmit = async (form) => {
+        const { error } = await handleSaveForm({ form })
+        if (error) { console.error(error) } // TODO: Add feedback here
+        updateStep(Number(activeStep) + 1)
+    }
     return (
         <FormProvider {...methods}>
             <Box component='form' display='flex' justifyContent='center' alignItems='center' flexDirection='column' gap={3} width='100%'

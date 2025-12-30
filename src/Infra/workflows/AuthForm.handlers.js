@@ -1,5 +1,5 @@
 import { supabase } from '../Supabase/supabaseBrowserClient'
-import { api } from '../helpers/infraHelpers'
+import { api } from '@/Core/infra/shared/infra.domain'
 // TODO: Verify the success messages are correct
 export const handleSignUpWithEmail = async ({ showError, showSuccess, email, password }) => {
     const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/form-submission` } })
