@@ -1,6 +1,4 @@
 export const MAX_WIDTH = 409
-export const AUTH_FORM_TYPES = { signUpOption: 'SignUp', signInOption: 'SignIn', forgotPasswordOption: 'ForgotPassword', resetPasswordOption: 'ResetPassword' }
-export const QUERY_PARAM_KEYS = { SEARCH: 'search' }
 // --- Data for content on Auth form
 export const EMAIL_FIELD = { key: 'email', htmlFor: 'email', label: 'Email Address', fieldName: 'email', placeholder: 'email@example.com', autoComplete: 'username', rules: { required: 'Email is required', pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i, message: 'Invalid email format' } }, }
 export const PASSWORD_FIELD = { key: 'password', htmlFor: 'password', label: 'Password', fieldName: 'password', placeholder: 'Enter your password', autoComplete: 'current-password', rules: { required: 'Password is required' }, }

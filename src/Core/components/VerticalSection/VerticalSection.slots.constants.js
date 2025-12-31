@@ -1,1 +1,1 @@
-export const GAP = 3 // Constants for the slots defined since the VerticalSection component is effectively a styled componentd
+export const GAP = 3 // Constants for the slots defined since the VerticalSection component is effectively a styled component

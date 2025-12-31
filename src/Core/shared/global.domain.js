@@ -1,4 +1,3 @@
-
 // word of snake_case string => word of Sentence case string
 export const snakeCaseWordToSentenceCaseWord = word => word.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase())
 // (values: { [field of snake_case string]: value of string }) => [{ label: field of Sentence case string, value }] 

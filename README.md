@@ -1,6 +1,7 @@
 # Freelancer Portfolio Showcase
 
-A modern, responsive, __freelancer portfolio showcase__ built with Next.js and MUI. This project demonstrates the ability to create visually appealing, responsive, and interactive front-end experiences, without relying on a backend.  
+A modern, responsive, __freelancer portfolio showcase__ built with Next.js and MUI. 
+This project demonstrates the ability to design and implement a **production quality frontend MVP** with clean architecture, reusable components, and polished UX **using Supabase**. 
 
 ---
 
@@ -18,16 +19,18 @@ A modern, responsive, __freelancer portfolio showcase__ built with Next.js and M
 ---
 
 ## Overview
-This project is a __static portfolio website__ aimed at showcasing my freelance work and technical skills in modern web development.  
+This project is a __full-stack portfolio website__ aimed at showcasing my freelance work and technical skills in modern web development.  
 
 It includes:  
 - A __landing page__ with clean, responsive design.  
-- __Authentication forms__ (mock implementation) for demonstration purposes.  
-- A __multi-step form__ (mock) to demonstrate complex UI interactions.  
+- __Authentication forms__ with email verification for new accounts and password reset functionality.  
+- A __multi-step form__ to demonstrate complex UI interactions.
+- A __form submission page__ to demonstrate _CRUD_ API usage capabilities. 
+- A __user settings page__ to demonstrate UX awareness and to empower users to have more control over their data.
 - Fully __responsive typography and layouts__ across devices.  
 - A focus on __DRY, modular, and reusable components__.
 
-The goal is to demonstrate __front-end expertise__, __design sensibility__, and __modern React/MUI best practices__.
+The goal is to demonstrate __frontend expertise__, __API integration__, __Auth handling__, __Form development__, __Supabase__, __MVP creation__, __design sensibility__, and __modern React/MUI best practices__.
 
 ---
 
@@ -37,11 +40,14 @@ The live demo is [here](https://www.connorkeenum.dev/).
 
 ## Features
 - __Landing Page:__ Fully responsive hero section, navigation, and footer.  
-- __Mock Auth Forms:__ Sign in, Sign up, Forgot password, and Reset password flows with proper accessibility.  
+- __Auth Forms:__ Sign in, Sign up, Forgot password, and Reset password flows with proper accessibility.  
 - __Multi-Step Form:__ Demonstrates user input flows and step navigation and form validation.  
+- __Form Submission:__ Demonstrates CRUD and Full-Stack capabilities. 
+- __User Settings:__ Manage account, and change defaults, used to show awareness of UX and to empower the user.
+- __Responsive Theme:__ Demonstrates attention to detail and enhances UX.
 - __Responsive Typography:__ Custom MUI theme with responsive headers for all devices.  
 - __Modern UI Components:__ Built with MUI and reusable React components.  
-- __No Backend Required:__ Purely front-end to demonstrate skills and design patterns.  
+- __Supabase Backend:__ Uses Supabase to demonstrate API integration and Full-Stack skills.  
 
 ---
 
@@ -49,7 +55,8 @@ The live demo is [here](https://www.connorkeenum.dev/).
 - __Next.js__ – React framework for server-rendered and static apps.  
 - __React__ – Component-based UI development.  
 - __MUI (Material-UI)__ – Modern UI library for React.  
-- __React Hook Form__ – Form management and validation.  
+- __React Hook Form__ – Form management and validation.
+- __Supabase__ - Managed Postgres database offering Auth and Storage as a service.  
 - __Next/Image__ – Optimized images with responsive support.  
 - __React Icons__ – Iconography for modern design.  
 
@@ -104,13 +111,14 @@ pnpm start
 Usage
 
 Navigate the landing page to see the portfolio showcase.
-Interact with mock authentication forms to see validation and accessibility features.
+Interact with authentication forms to see validation and accessibility features.
 
 Fill out the multi-step form to experience complex form flows.
+See filled out form at the form submission.
+Tweak user settings on the settings page when logged in.
 All components are responsive and visually consistent with the MUI theme.
 
 Future Enhancements
 
-- Integrate a real backend for authentication and form submission.
 - Add dynamic portfolio projects fetched from an API or CMS.
 - Implement user authentication with OAuth.

@@ -1,1 +1,1 @@
-export const SUCCESS_DATA = { header: 'Thank you!', description: 'This is a portfolio demo form. No data is submitted or emailed.' }
+export const SUCCESS_DATA = { header: 'Thank you!', description: 'This is a portfolio demo form. Your form is stored and can be managed at the form-submission page. No further actions were taken.' }

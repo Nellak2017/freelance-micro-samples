@@ -1,40 +1,40 @@
 import { MdAutoFixHigh, MdAutoAwesome, MdAutoFixNormal, MdAutoGraph, MdBuild, MdBusinessCenter } from 'react-icons/md'
-export const SECTION_HEADER = { header: 'What I Can Build', subHeader: 'Showcasing frontend components, landing pages, and simple web projects.' }
+export const SECTION_HEADER = { header: 'What I Build', subHeader: 'Frontend focused solutions: modern UI, fast pages, and practical web features.' }
 export const HOME_SECOND_DATA = [
     {
         key: 'first-card',
         Icon: MdAutoFixHigh,
         heading: 'Landing Pages',
-        description: 'Responsive, fast, modern landing pages.',
+        description: 'High conversion, responsive landing pages optimized for performance and SEO.',
     },
     {
         key: 'second-card',
         Icon: MdAutoAwesome,
         heading: 'UI Components',
-        description: 'Reusable, composable, visually clean components',
+        description: 'Reusable, scalable React components built for real-world products.',
     },
     {
         key: 'third-card',
         Icon: MdAutoFixNormal,
-        heading: 'Forms',
-        description: 'Simple, functional forms ready for integration.',
+        heading: 'Forms & Auth Flows',
+        description: 'Forms, validation, and authentication flows integrated with APIs or Supabase.',
     },
     {
         key: 'fourth-card',
         Icon: MdAutoGraph,
-        heading: 'Buttons & Interactions',
-        description: 'Smooth animations and interactions for better UX.',
+        heading: 'Data & Interactions',
+        description: 'API driven UI, dashboards, and client-side state management.',
     },
     {
         key: 'fifth-card',
         Icon: MdBuild,
-        heading: 'Small Static Apps',
-        description: 'Single-page apps or static demos built with React/Next.js',
+        heading: 'MVP Web Apps',
+        description: 'Frontend heavy MVPs using Next.js with light backend or BaaS integration.',
     },
     {
         key: 'sixth-card',
         Icon: MdBusinessCenter,
-        heading: 'Design Implementation',
-        description: 'Turning designs into functional, maintainable, frontend code.',
+        heading: 'Design → Production',
+        description: 'Turning Figma designs into production ready frontend with clean architecture.',
     },
 ]
