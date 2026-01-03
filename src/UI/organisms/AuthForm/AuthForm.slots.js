@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '@mui/material/Button'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
@@ -13,9 +13,9 @@ import { useAuthForm } from '@/Application/hooks/organisms/AuthForm/useAuthForm.
 const GeneralAuthForm = ({ customHook = useAuthForm, state: { emailButtonText = '', title = '', successText = '', initialFormState = {} } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
     const { state, services } = customHook?.(initialFormState) || {}
     const { router, errors, isSuccessOpen, isErrorOpen, errorMessage } = state || {}
-    const { showSuccess, showError, handleSuccessClose, handleErrorClose, register, handleSubmit, } = services || {}
+    const { showSuccess, showError, handleSuccessClose, handleErrorClose, register, handleSubmit, setAuth } = services || {}
     return (
-        <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, showSuccess, showError, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
+        <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, showSuccess, showError, setAuth, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
             <LargeLogo state={{ size: 96 }} /><Typography id='auth-form-title' variant='h2'>{title}</Typography>
             {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}
             <SignInContainer><Button type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>

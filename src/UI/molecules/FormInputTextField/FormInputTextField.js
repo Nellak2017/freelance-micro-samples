@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField'
 
-export const FormInputTextField = ({ state: { fieldName, htmlFor, label, placeholder, autoComplete, isRequired, rules, slotProps, } = {}, services: { register } = {}, errors, children, ...rest }) => (
+export const FormInputTextField = ({ state: { fieldName, htmlFor, label, placeholder, autoComplete, isRequired, rules, slotProps, } = {}, services: { register = () => {} } = {}, errors, children, ...rest }) => (
     <TextField
         component='label'
         {...register(fieldName, rules)}

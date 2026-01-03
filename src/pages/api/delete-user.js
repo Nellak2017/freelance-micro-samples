@@ -11,6 +11,6 @@ export default async function handler(req, res) { // ✓
     const userId = authData.user?.id // ✓
     if (!userId) return res.status(400).json({ data: null, error: 'Missing userId. This is a Supabase server issue. Check docs to check if the API shape changed.' }) // ✓
     const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(userId) // ✓
-    if (deleteError) return res.status(500).json({ data: null, error: deleteError?.message ?? 'There is an unspecified delete error' }) // ✓
+    if (deleteError) { return res.status(500).json({ data: null, error: deleteError?.message ?? 'There is an unspecified delete error' }) } // ✓
     return res.status(200).json({ data: { success: true }, error: null }) // ✓
 }

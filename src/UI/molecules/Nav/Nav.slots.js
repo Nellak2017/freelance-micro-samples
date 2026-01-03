@@ -13,6 +13,7 @@ import { SITE_TITLE, DEFAULT_NAV_LINKS, DEFAULT_NAV_BUTTON_DATA } from '@/Core/c
 import { CustomDarkModeSwitch } from '@/UI/atoms/CustomDarkModeSwitch/CustomDarkModeSwitch'
 import { makeAuthenticatedNavButtonData } from '@/Core/components/Nav/Nav.domain'
 import { useRightSlot} from '@/Application/hooks/molecules/Nav/useRightSlot'
+import { CustomSettingsButton } from '@/UI/atoms/CustomSettingsButton/CustomSettingsButton'
 
 export const CustomLink = ({ title = '', href = '/', children, ...rest }) => (<Box title={title} sx={theme => ({ listStyleType: 'none', boxShadow: 'none', borderBottom: '1px solid transparent', '&:hover': { borderBottom: `1px solid ${theme.palette.primary.main}` } })} {...rest} ><Link href={href}>{children}</Link></Box>)
 export const LeftSlot = ({ state: { title = SITE_TITLE } = {} }) => (<Box display='flex' alignItems='center' gap={3}><Logo /><Typography aria-label='Logo Title'>{title}</Typography></Box>)
@@ -45,6 +46,7 @@ export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}
     return (
         <Box display='flex' alignItems='center' gap={3}>
             <CustomDarkModeSwitch />
+            <CustomSettingsButton />
             {usedButtonData?.map(({ title, label, href, onClick }, index) => (
                 <Button key={`Home-Nav-${label}-Button`} title={title} href={href} color={usedColor} variant={['contained', 'secondary']?.[index % 2]} onClick={onClick}>{label}</Button>
             ))}
