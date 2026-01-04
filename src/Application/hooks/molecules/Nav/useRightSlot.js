@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { handleSignOut } from '@/Infra/workflows/AuthForm.handlers'
 import { useAuth } from '@/Application/hooks/shared/useAuth'
@@ -7,6 +7,6 @@ export const useRightSlot = ({ buttonData, makeButtonData }) => {
     const router = useRouter()
     const { user, setAuth } = useAuth()
     const usedButtonData = useMemo(() => user ? makeButtonData({ 'Log out': async () => { await handleSignOut({ router, setAuth }) } }) : buttonData, [user, makeButtonData, setAuth, router, buttonData])
-    const usedColor = useMemo(() => user ? 'error' : 'primary', [user])
-    return { state: { usedButtonData, usedColor, user } }
+    const usedColor = index => useCallback(user ? ['error', 'primary']?.[index % 2] : 'primary', [user])
+    return { state: { usedButtonData, user }, services: { usedColor } }
 }

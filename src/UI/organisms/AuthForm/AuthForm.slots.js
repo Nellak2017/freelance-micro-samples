@@ -1,26 +1,25 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { StyledAuthForm, SignInContainer, } from './AuthForm.elements.js'
-import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '@/Infra/workflows/AuthForm.handlers.js'
 import { MAX_WIDTH, SIGN_IN_FORM, SIGN_UP_FORM, FORGOT_PASSWORD_FORM, RESET_PASSWORD_FORM } from '@/Core/components/AuthForm/AuthForm.constants.js'
-import { LargeLogo } from '@/UI/atoms/AvatarLink/AvatarLink.slots.js'
-import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } from './AuthForm.slots.helpers.js'
 import { useAuthForm } from '@/Application/hooks/organisms/AuthForm/useAuthForm.js'
-
 import { useSnackbar } from '@/Application/hooks/shared/useSnackbar'
+import { handleSignInWithEmail, handleSignUpWithEmail, handleRequestPasswordReset, handleResetPassword } from '@/Infra/workflows/AuthForm.handlers.js'
+import { LargeLogo } from '@/UI/atoms/AvatarLink/AvatarLink.slots.js'
 import { AppSnackbar } from '@/UI/atoms/AppSnackBar/AppSnackBar.js' 
+import { ForgotPasswordLink, CallToAction, EmailFormInput, PasswordFormInput } from './AuthForm.slots.helpers.js'
+import { StyledAuthForm, SignInContainer, } from './AuthForm.elements.js'
 
-// TODO: Make the Button Tab Focusable for better UX
 // TODO: Integrate Snackbar into the useAuthForm hook (or keep separate??)
 const GeneralAuthForm = ({ customHook = useAuthForm, state: { emailButtonText = '', title = '', initialFormState = {} } = {}, services: { handleEmailFormSubmit = handleSignInWithEmail } = {}, children }) => {
     const { state: { router, errors }, services: { register, handleSubmit, setAuth } } = customHook?.(initialFormState) || {}
     const { state: snackbarState, services: { showSuccess, showError, closeSnackbar } } = useSnackbar()
+    const submitRef = useRef(null) // NOTE: Purely for UX to show a ripple when enter or button clicked
     return (
-        <StyledAuthForm onSubmit={handleSubmit((data => handleEmailFormSubmit({ router, showSuccess, showError, setAuth, ...data })))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
+        <StyledAuthForm onSubmit={handleSubmit((data => { submitRef.current?.focus(); return handleEmailFormSubmit({ router, showSuccess, showError, setAuth, ...data })} ))} method='POST' id='auth-form' maxwidth={MAX_WIDTH} aria-labelledby='auth-form-title'>
             <LargeLogo /><Typography id='auth-form-title' variant='h2'>{title}</Typography>
             {React.Children.map(children, child => React.isValidElement(child) ? React.cloneElement(child, { register, errors }) : child)}
-            <SignInContainer><Button type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>
+            <SignInContainer><Button ref={submitRef} type='submit' name='email-auth' id='email-auth' title={emailButtonText} sx={{ width: '80%', borderRadius: 2 }}>{emailButtonText}</Button></SignInContainer>
             <AppSnackbar state={snackbarState} services={{ onClose: closeSnackbar }} />
         </StyledAuthForm>
     )

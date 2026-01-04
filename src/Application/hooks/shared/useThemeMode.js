@@ -3,10 +3,9 @@ import { useMemo, useEffect, useState, useCallback } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
 // TODO: Change to the Cookie version to solve the SSR flicker problem
-// NOTE: Setting defaultMode to anything not null makes isReady never valid
-export const useThemeMode = (defaultMode = null) => {
-    const { value: storedMode, setValue: setStoredMode } = useLocalStorage('themeMode', null)
-    const [mode, setModeState] = useState(defaultMode) // null = SSR, unknown
+export const useThemeMode = (defaultMode = 'dark') => {
+    const { value: storedMode, setValue: setStoredMode } = useLocalStorage('themeMode', defaultMode)
+    const [mode, setModeState] = useState(defaultMode) // dark by default for SSR safety
     const theme = useMemo(() => mode === 'light' ? lightTheme : darkTheme, [mode])
     const setMode = useCallback(next => { setStoredMode(next); setModeState(next)}, [setStoredMode, setModeState])
     useEffect(() => { setModeState(storedMode) /* eslint-disable-line react-hooks/set-state-in-effect */ }, [storedMode, setStoredMode]) // Sync SSR -> client
@@ -17,5 +16,5 @@ export const useThemeMode = (defaultMode = null) => {
         media.addEventListener('change', handler)
         return () => { media.removeEventListener('change', handler) }
     }, [mode, setStoredMode, setMode])
-    return { theme, mode, setMode, isReady: mode !== null }
+    return { theme, mode, setMode }
 }

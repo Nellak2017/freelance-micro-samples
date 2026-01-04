@@ -20,7 +20,7 @@ export const handleRequestPasswordReset = async ({ showError, showSuccess, email
 }
 export const handleResetPassword = async ({ router, setAuth, showError, showSuccess, password, successText = RESET_PASSWORD_SUCCESS }) => {
     const { error } = await supabase.auth.updateUser({ password })
-    if (error) { showError?.(error) } else { await handleSignOut({ router, setAuth, showError, showSuccess, successText }); router?.replace('/sign-in') }
+    if (error) { showError?.(error) } else { await handleSignOut({ setAuth, showError, showSuccess, successText }); router?.replace('/sign-in') }
 }
 export const handleDelete = async ({ router, setAuth, showError = console.error, showSuccess = console.log, successText = DELETE_SUCCESS }) => { 
     const sessionResult = await supabase.auth.getSession() 

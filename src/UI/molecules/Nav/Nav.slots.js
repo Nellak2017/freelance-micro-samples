@@ -41,14 +41,15 @@ export const MiddleSlot = ({ state: { links = DEFAULT_NAV_LINKS } = {} }) => {
 // NOTE: makeButtonData allows you to inject custom functions into the button that is not accessible from the Core layer, such as Infra functions
 // NOTE: buttonData is for not logged in mode, makeButtonData is for logged in mode
 export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}, services: { makeButtonData = makeAuthenticatedNavButtonData } = {} }) => {
-    const { state } = useRightSlot({ buttonData, makeButtonData })
-    const { usedButtonData, usedColor, user } = state
+    const { state, services } = useRightSlot({ buttonData, makeButtonData })
+    const { usedButtonData, user } = state
+    const { usedColor } = services
     return (
         <Box display='flex' alignItems='center' gap={3}>
             <CustomDarkModeSwitch />
             {user && <CustomSettingsButton />}
             {usedButtonData?.map(({ title, label, href, onClick }, index) => (
-                <Button key={`Home-Nav-${label}-Button`} title={title} href={href} color={usedColor} variant={['contained', 'secondary']?.[index % 2]} onClick={onClick}>{label}</Button>
+                <Button key={`Home-Nav-${label}-Button`} title={title} href={href} color={usedColor?.(index)} variant={['contained', 'secondary']?.[index % 2]} onClick={onClick}>{label}</Button>
             ))}
         </Box>)
 }

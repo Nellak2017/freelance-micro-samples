@@ -6,7 +6,7 @@ import { useAuth } from '@/Application/hooks/shared/useAuth'
 import { useSnackbar } from '@/Application/hooks/shared/useSnackbar'
 import { CaroselView } from '@/UI/molecules/CaroselView/CaroselView'
 import { AppSnackbar } from '@/UI/atoms/AppSnackBar/AppSnackBar'
-import { SettingsAccountDetailsSlot, SettingsPasswordSlot, SettingsManageSlot } from './slots/SettingsOptions.slots'
+import { SettingsAccountDetailsSlot, SettingsPasswordSlot, SettingsManageSlot } from './SettingsOptions.slots'
 export const SettingsOptions = ({ email }) => {
     const router = useRouter()
     const { setAuth } = useAuth()

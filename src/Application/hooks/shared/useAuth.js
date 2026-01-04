@@ -18,5 +18,5 @@ export const useAuth = (defaultUserState = null) => {
         const { data: listener } = supabase.auth.onAuthStateChange((_, session) => { setAuth(session?.user ?? null) })
         return () => listener.subscription.unsubscribe()
     }, [user, setAuth])
-    return { user, loading, isReady: user !== null, setAuth }
+    return { user, loading, setAuth }
 }

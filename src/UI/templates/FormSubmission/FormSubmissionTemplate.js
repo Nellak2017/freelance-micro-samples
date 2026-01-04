@@ -23,3 +23,5 @@ export const FormSubmissionTemplate = ({ fields }) => ( // fields: [{label:strin
 )
 // TODO: Add react query for auto sync of the fetched data
 // TODO: Since this Nav variant is used twice (here and in Form Sample template), make this an exported slot composition
+// TODO: Pre-fill the form when the user clicks "edit" for UX purposes
+// TODO: Add Snackbar feedback for Delete form submission (it is unclear it was deleted and since it isn't auto synced yet it is not obvious at all)
