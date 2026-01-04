@@ -1,0 +1,1 @@
+export const DEFAULT_ITEMS = [{ id: 'account', label: 'Account Details' }, { id: 'password', label: 'Change Password' }, { id: 'manage', label: 'Manage Account' },]

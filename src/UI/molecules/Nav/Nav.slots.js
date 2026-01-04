@@ -42,11 +42,11 @@ export const MiddleSlot = ({ state: { links = DEFAULT_NAV_LINKS } = {} }) => {
 // NOTE: buttonData is for not logged in mode, makeButtonData is for logged in mode
 export const RightSlot = ({ state: { buttonData = DEFAULT_NAV_BUTTON_DATA } = {}, services: { makeButtonData = makeAuthenticatedNavButtonData } = {} }) => {
     const { state } = useRightSlot({ buttonData, makeButtonData })
-    const { usedButtonData, usedColor } = state
+    const { usedButtonData, usedColor, user } = state
     return (
         <Box display='flex' alignItems='center' gap={3}>
             <CustomDarkModeSwitch />
-            <CustomSettingsButton />
+            {user && <CustomSettingsButton />}
             {usedButtonData?.map(({ title, label, href, onClick }, index) => (
                 <Button key={`Home-Nav-${label}-Button`} title={title} href={href} color={usedColor} variant={['contained', 'secondary']?.[index % 2]} onClick={onClick}>{label}</Button>
             ))}

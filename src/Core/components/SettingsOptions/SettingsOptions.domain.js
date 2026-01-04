@@ -1,0 +1,2 @@
+import { DEFAULT_ITEMS } from '@/Core/templates/SettingsTemplate.constants'
+export const itemToIndex = (itemId, items = DEFAULT_ITEMS) => Object.fromEntries(items.map(({ id }, index) => [id, index]))?.[itemId]

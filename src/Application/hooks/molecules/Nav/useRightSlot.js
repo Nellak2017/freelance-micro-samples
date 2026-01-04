@@ -8,5 +8,5 @@ export const useRightSlot = ({ buttonData, makeButtonData }) => {
     const { user, setAuth } = useAuth()
     const usedButtonData = useMemo(() => user ? makeButtonData({ 'Log out': async () => { await handleSignOut({ router, setAuth }) } }) : buttonData, [user, makeButtonData, setAuth, router, buttonData])
     const usedColor = useMemo(() => user ? 'error' : 'primary', [user])
-    return { state: { usedButtonData, usedColor } }
+    return { state: { usedButtonData, usedColor, user } }
 }
