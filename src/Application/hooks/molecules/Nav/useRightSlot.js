@@ -7,6 +7,6 @@ export const useRightSlot = ({ buttonData, makeButtonData }) => {
     const router = useRouter()
     const { user, setAuth } = useAuth()
     const usedButtonData = useMemo(() => user ? makeButtonData({ 'Log out': async () => { await handleSignOut({ router, setAuth }) } }) : buttonData, [user, makeButtonData, setAuth, router, buttonData])
-    const usedColor = index => useCallback(user ? ['error', 'primary']?.[index % 2] : 'primary', [user])
+    const usedColor = useCallback(index => user ? ['error', 'primary']?.[index % 2] : 'primary', [user])
     return { state: { usedButtonData, user }, services: { usedColor } }
 }
