@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import { supabase } from '@/Infra/Supabase/supabaseBrowserClient'
 import { useSessionStorage } from './useSessionStorage'
 // useAuth uses sessionStorage to cache the user auth data so that there is minimal client side flickering without resorting to some invasive SSR solution
+// TODO: Consider using the cookie approach since Supabase natively does this already
 export const useAuth = (defaultUserState = null) => {
     const { value: storedUser, setValue: setStoredUser } = useSessionStorage('sb-user', null)
     const [user, setUserState] = useState(defaultUserState)

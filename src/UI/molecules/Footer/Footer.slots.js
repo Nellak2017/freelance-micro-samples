@@ -5,7 +5,6 @@ import NextLink from 'next/link'
 import { LeftSlot } from '../Nav/Nav.slots'
 import { FOOTER_COLUMN_DATA, LOGO_DESCRIPTION, CLOSING_REMARKS } from '@/Core/components/Footer/Footer.constants'
 import { PageContainer } from '../PageContainer/PageContainer'
-// TODO: Fix the inconsistent gap between columns on < sm screens when it is in flex-direction: column
 const { left, right } = CLOSING_REMARKS
 const Column = ({ state }) => (
     <Box display='flex' flexDirection='column' gap={2} >

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { FORM_SAMPLE_PAGE_NAV_LINKS } from '@/Core/templates/FormSampleTemplate.constants'
 import { LeftSlot, MiddleSlot, RightSlot } from './Nav.slots'
 import { PageContainer } from '../PageContainer/PageContainer'
 
@@ -12,3 +13,14 @@ const DefaultChildren = <>
     </StandardContainer>
 </>
 export const Nav = ({ children = DefaultChildren, sx }) => (<Box component='nav' aria-label='Main navigation' display='flex' justifyContent='center' width='100%' position='sticky' top={0} zIndex={1000} boxShadow={1} sx={theme => ({ backgroundColor: theme.palette.background.default, ...sx })}>{children}</Box>)
+// --- Other Default variants
+export const FormNav = () => (
+    <Nav>
+        <StandardContainer px={3} py={3} flexDirection={{ xs: 'column', md: 'row' }}>
+            <StandardContainer gap={6} justifyContent={{ xs: 'center', md: 'flex-start' }}>
+                <LeftSlot /><CenterContainer><MiddleSlot state={{ links: FORM_SAMPLE_PAGE_NAV_LINKS }} /></CenterContainer>
+            </StandardContainer>
+            <RightSlot />
+        </StandardContainer>
+    </Nav>
+)

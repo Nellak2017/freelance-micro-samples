@@ -1,12 +1,11 @@
 export const PREAMBLE_DATA = { header: 'Tell Me About Your Project', subHeader: 'A clean, modern multi-step form built with accessible components and responsive design.', labels: ['Personal Details', 'Requirements', 'Review'], }
 // --- All steps
-// TODO: Ensure email server and client rules are exactly the same
 // TODO: In the App Layer (not here!) pre-fill the form with email if signed in and no user data or the form submission. If not signed in then don't pre-fill anything
 export const FORM_DATA = [
     {
         fullName: { label: 'Full Name', defaultValue: '', fieldName: 'full_name', htmlFor: 'name', placeholder: 'Full Name', autoComplete: 'given-name', isRequired: true, rules: { required: 'Full Name is required', minLength: { value: 2, message: 'Name must be at least 2 characters' } } },
-        email: { label: 'Email', defaultValue: '', fieldName: 'email', htmlFor: 'email', placeholder: 'name@example.com', autoComplete: 'email', isRequired: true, rules: { required: 'Email is required', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Enter a valid email address', } } },
-        companyName: { label: 'Company Name', defaultValue: '', fieldName:'company_name', htmlFor: 'name', placeholder: 'Company Name', autoComplete: 'organization', isRequired: false, },
+        email: { label: 'Email', defaultValue: '', fieldName: 'email', htmlFor: 'email', placeholder: 'name@example.com', autoComplete: 'email', isRequired: true, rules: { required: 'Email is required', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Enter a valid email address', }, maxLength: { value: 50, message: 'Email must be at most 50 characters', }, } },
+        companyName: { label: 'Company Name', defaultValue: '', fieldName: 'company_name', htmlFor: 'name', placeholder: 'Company Name', autoComplete: 'organization', isRequired: false, },
         role: { label: 'Role', defaultValue: 'Founder', fieldName: 'role', htmlFor: 'select', isRequired: false, options: ['Founder', 'Hiring Manager', 'Product Owner', 'Other'] },
     },
     {
