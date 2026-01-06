@@ -11,7 +11,7 @@ import { Success } from './DefaultSteps/Success'
 import { StepFormButtonGroup } from './Helpers/MultiStepForm.helpers'
 
 export const StepForm = ({ serverStep }) => {
-    const { state: { snackbarState, methods } = {}, services: { closeSnackbar, prevStep, nextStep, handleFormSubmit, } = {} } = useStepForm?.(serverStep) || {}
+    const { state: { activeStep, snackbarState, methods } = {}, services: { closeSnackbar, prevStep, nextStep, handleFormSubmit, } = {} } = useStepForm?.(serverStep) || {}
     return (
         <FormProvider {...methods}>
             <Box component='form' display='flex' justifyContent='center' alignItems='center' flexDirection='column' gap={3} width='100%'
@@ -22,7 +22,7 @@ export const StepForm = ({ serverStep }) => {
                     <FirstStep handleNext={nextStep} />
                     <SecondStep handleNext={nextStep} handleBack={prevStep} />
                     <Confirm><StepFormButtonGroup><Button onClick={prevStep}>Back</Button><Button color='success' type='submit'>Confirm and Continue</Button></StepFormButtonGroup></Confirm>
-                    <Box><Success /><StepFormButtonGroup><Button onClick={prevStep}>Back To Form</Button></StepFormButtonGroup></Box>
+                    <Box><Success /><StepFormButtonGroup><Button onClick={prevStep}>Back To Form</Button><Button color='success' href='form-submission'>Submission</Button></StepFormButtonGroup></Box>
                 </CaroselView>
                 <AppSnackbar state={snackbarState} services={{ onClose: closeSnackbar }} />
             </Box>

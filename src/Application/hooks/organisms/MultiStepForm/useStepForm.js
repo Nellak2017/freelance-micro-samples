@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { ALL_STEPS_FIELDS, DEFAULT_VALUES } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
-import { handleSaveForm } from '@/Infra/workflows/MultiStepForm.handlers'
 import { useSnackbar } from '@/Application/hooks/shared/useSnackbar'
+import { useQueryParam } from '@/Application/hooks/shared/useQueryParam'
+import { handleSaveForm } from '@/Infra/workflows/MultiStepForm.handlers'
 
 export const useStepForm = serverStep => {
     const methods = useForm({ defaultValues: DEFAULT_VALUES, shouldUnregister: false, mode: 'onTouched' }) // NOTE: Needed for form state in Infra
@@ -17,5 +18,5 @@ export const useStepForm = serverStep => {
         const processedError = error?.message.includes('Auth session missing') ? `${error?.message} \nYou must sign-in first.` : error
         if (error) { showError(processedError) } else { updateStep(Number(activeStep) + 1); showSuccess('Successfully Submitted the Form') }
     }
-    return { state: { snackbarState, methods, }, services: { closeSnackbar, prevStep, nextStep, handleFormSubmit, }, }
+    return { state: { activeStep, snackbarState, methods, }, services: { closeSnackbar, prevStep, nextStep, handleFormSubmit, }, }
 }
