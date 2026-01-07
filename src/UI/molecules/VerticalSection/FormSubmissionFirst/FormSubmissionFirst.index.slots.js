@@ -8,7 +8,7 @@ import Divider from '@mui/material/Divider'
 import { GAP } from '@/Core/components/VerticalSection/VerticalSection.slots.constants'
 import { FORM_SUBMISSION_FIRST } from '@/Core/components/VerticalSection/FormSubmissionFirst.constants'
 import { PageContainer } from '../../PageContainer/PageContainer'
-import { handleDeleteForm } from '@/Infra/workflows/MultiStepForm.handlers'
+import { handleDeleteForm } from '@/Infra/workflows/MultiStepFormSubmission.handlers'
 // fields: [{label:string, value: string}]
 export const FormSubmissionFirst = ({ fields = [], state: { header, subHeader, primaryButton, secondaryButton, } = FORM_SUBMISSION_FIRST, services: { deleteHandler = handleDeleteForm } = {} }) => (
     <PageContainer sx={{ display: 'flex', justifyContent: 'center' }}>

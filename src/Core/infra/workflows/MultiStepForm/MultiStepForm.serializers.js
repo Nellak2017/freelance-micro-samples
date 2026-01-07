@@ -1,4 +1,2 @@
-import { snakeCaseWordToSentenceCaseWord, pickFields } from '@/Core/shared/global.domain'
-import { ALL_STEPS_FIELDS } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
-// Row | null => [{ label, value }]
-export const defaultFormSerializer = supabaseFormResponse => supabaseFormResponse ? pickFields(supabaseFormResponse, ALL_STEPS_FIELDS.flat()).map(({ label, value }) => ({ label: snakeCaseWordToSentenceCaseWord(label), value, })) : []
+import { DEFAULT_VALUES } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
+export const strictFormSerializer = email => supabaseFormResponse => supabaseFormResponse ? Object.fromEntries(Object.entries(supabaseFormResponse).filter(([key]) => key in DEFAULT_VALUES)) : { ...DEFAULT_VALUES, email: email ?? DEFAULT_VALUES?.email }

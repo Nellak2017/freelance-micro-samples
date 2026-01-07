@@ -10,8 +10,8 @@ import { Confirm } from './DefaultSteps/Confirm'
 import { Success } from './DefaultSteps/Success'
 import { StepFormButtonGroup } from './Helpers/MultiStepForm.helpers'
 
-export const StepForm = ({ serverStep }) => {
-    const { state: { activeStep, snackbarState, methods } = {}, services: { closeSnackbar, prevStep, nextStep, handleFormSubmit, } = {} } = useStepForm?.(serverStep) || {}
+export const StepForm = ({ serverStep, defaultValues }) => {
+    const { state: { activeStep, snackbarState, methods } = {}, services: { closeSnackbar, prevStep, nextStep, handleFormSubmit, } = {} } = useStepForm?.({ serverStep, defaultValues }) || {}
     return (
         <FormProvider {...methods}>
             <Box component='form' display='flex' justifyContent='center' alignItems='center' flexDirection='column' gap={3} width='100%'

@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form'
-import { ALL_STEPS_FIELDS, DEFAULT_VALUES } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
+import { ALL_STEPS_FIELDS } from '@/Core/components/MultiStepForm/DefaultSteps/DefaultSteps.constants'
 import { useSnackbar } from '@/Application/hooks/shared/useSnackbar'
 import { useQueryParam } from '@/Application/hooks/shared/useQueryParam'
-import { handleSaveForm } from '@/Infra/workflows/MultiStepForm.handlers'
+import { handleSaveForm } from '@/Infra/workflows/MultiStepFormSubmission.handlers'
 
-export const useStepForm = serverStep => {
-    const methods = useForm({ defaultValues: DEFAULT_VALUES, shouldUnregister: false, mode: 'onTouched' }) // NOTE: Needed for form state in Infra
+export const useStepForm = ({ serverStep, defaultValues }) => {
+    const methods = useForm({ defaultValues, shouldUnregister: false, mode: 'onTouched' }) // NOTE: Needed for form state in Infra
     const [activeStep, updateStep] = useQueryParam('form-step', serverStep) // NOTE: Needed for form state in client, to display the right form page
     const { state: snackbarState, services: { closeSnackbar, showError, showSuccess } } = useSnackbar() // NOTE: Mainly for UX not strictly needed, offers feedback
     const prevStep = () => updateStep(Number(activeStep) - 1)

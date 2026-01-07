@@ -1,4 +1,4 @@
-import { handleGetForm } from '@/Infra/workflows/MultiStepForm.handlers'
+import { handleGetForm } from '@/Infra/workflows/MultiStepFormSubmission.handlers'
 import { FormSubmissionTemplate } from '@/UI/templates/FormSubmission/FormSubmissionTemplate'
 import { createClient } from '@/Infra/Supabase/supabaseServerClient'
 export const FormSubmission = ({ fields }) => (<FormSubmissionTemplate fields={fields} />)
