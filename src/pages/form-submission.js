@@ -10,7 +10,7 @@ export const getServerSideProps = async (ctx) => {
     const { data, error } = await handleGetFormServerSide({ ctx })
     const initialFields = error ? [] : data
     const queryClient = new QueryClient()
-    await queryClient.prefetchQuery({ queryKey: ['formFields'], queryFn: () => initialFields, })
+    queryClient.setQueryData(['formFields'], initialFields)
     return { props: { dehydratedState: dehydrate(queryClient), initialFields } }
 }
 export default FormSubmission
