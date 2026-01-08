@@ -10,7 +10,7 @@ import { FORM_SUBMISSION_FIRST } from '@/Core/components/VerticalSection/FormSub
 import { PageContainer } from '../../PageContainer/PageContainer'
 import { handleDeleteForm } from '@/Infra/workflows/MultiStepFormSubmission.handlers'
 // fields: [{label:string, value: string}]
-export const FormSubmissionFirst = ({ fields = [], state: { header, subHeader, primaryButton, secondaryButton, } = FORM_SUBMISSION_FIRST, services: { deleteHandler = handleDeleteForm } = {} }) => (
+export const FormSubmissionFirst = ({ fields = [], state: { header, subHeader, primaryButton, secondaryButton, } = FORM_SUBMISSION_FIRST, services: { deleteHandler = () => {} } = {} }) => (
     <PageContainer sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box id='form-submission-first-top' component='header' display='flex' flexDirection='column' gap={GAP} maxWidth='60%' aria-labelledby='form-submission-first-header' backgroundColor='background.paper' boxShadow={3} borderRadius={2} p={4}>
             <Typography id='form-submission-first-header' component='h1' variant='h1' fontWeight='normal' textAlign='center' mx={{xs: 0, sm: GAP}}>{header}</Typography>
