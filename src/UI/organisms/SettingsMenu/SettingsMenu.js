@@ -20,7 +20,7 @@ export const SettingsMenu = ({ items = defaultItemsWithIcons }) => {
                     onClick={() => setSelected(id)}
                 >
                     <StyledListItemIcon>{icon}</StyledListItemIcon>
-                    <ListItemText primary={label} slotProps={{ primary: { variant: 'h3', component: 'p' } }} />
+                    <ListItemText primary={label} slotProps={{ primary: { variant: 'h3', component: 'p' } }} sx={{ display: { xs: 'none', sm: 'block' } }} />
                 </StyledListItemButton>
             ))}
         </StyledList>
