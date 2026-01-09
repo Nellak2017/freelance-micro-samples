@@ -19,7 +19,7 @@ export const FormSubmissionFirst = ({ initialFields = [], state: { header, subHe
     const handleDelete = useCallback(async () => {
         await deleteHandler?.()
         if (!error) { fields?.length === 0 ? showInfo('Form already deleted') : showSuccess('Form Deleted') }
-    }, [deleteHandler, showError, showInfo, showSuccess])
+    }, [error, fields?.length, deleteHandler, showInfo, showSuccess])
     return (
         <PageContainer sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box id='form-submission-first-top' component='header' display='flex' flexDirection='column' gap={GAP} maxWidth='60%' aria-labelledby='form-submission-first-header' backgroundColor='background.paper' boxShadow={3} borderRadius={2} p={4}>

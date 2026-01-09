@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "line-count-sorted-no-fluff": "find ./src/ -type f \\( -name '*.js' -o -name '*.mjs' -o -name '*.ts' -o -name '*.tsx' \\) ! \\( -name '*stories*' -o -name '*test*' \\) -exec wc -l {} + | sort -n"
+    "line-count-sorted-no-fluff": "find ./src/ -type f \\( -name '*.js' -o -name '*.mjs' -o -name '*.ts' -o -name '*.tsx' \\) ! \\( -name '*stories*' -o -name '*test*' \\) -exec wc -l {} + | sort -n",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -31,7 +32,11 @@
     "react-toggle-dark-mode": "^1.1.1"
   },
   "devDependencies": {
+    "@swc/jest": "^0.2.39",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3"
+    "eslint-config-next": "16.0.3",
+    "fast-check": "^4.5.3",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0"
   }
 }

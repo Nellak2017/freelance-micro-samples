@@ -1,9 +1,10 @@
 import { supabase } from '../Supabase/supabaseBrowserClient'
 import { api } from '@/Core/infra/shared/infra.domain'
 import { SIGN_UP_SUCCESS, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS, REQUEST_PASSWORD_RESET_SUCCESS, RESET_PASSWORD_SUCCESS, DELETE_SUCCESS } from '@/Core/components/AuthForm/AuthForm.constants'
+import { signUp, resetPassword } from '../endpoints/auth.endpoints'
 
 export const handleSignUpWithEmail = async ({ showError, showSuccess, email, password, successText = SIGN_UP_SUCCESS }) => {
-    const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/form-submission` } })
+    const { error } = await signUp({ email, password, options: { emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/form-submission` } })
     if (error) { showError?.(error) } else { showSuccess?.(successText) }
 }
 export const handleSignInWithEmail = async ({ router, showSuccess, showError, email, password, successText = SIGN_IN_SUCCESS }) => {
@@ -19,7 +20,7 @@ export const handleRequestPasswordReset = async ({ showError, showSuccess, email
     if (error) { showError?.(error) } else { showSuccess?.(successText) }
 }
 export const handleResetPassword = async ({ router, setAuth, showError, showSuccess, password, successText = RESET_PASSWORD_SUCCESS }) => {
-    const { error } = await supabase.auth.updateUser({ password })
+    const { error } = await resetPassword({ password })
     if (error) { showError?.(error) } else { await handleSignOut({ setAuth, showError, showSuccess, successText }); router?.replace('/sign-in') }
 }
 export const handleDelete = async ({ router, setAuth, showError = console.error, showSuccess = console.log, successText = DELETE_SUCCESS }) => { 

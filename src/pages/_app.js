@@ -11,7 +11,7 @@ import { TITLE } from '@/Core/pages/_app.constants'
 import { QueryClient, QueryClientProvider, HydrationBoundary } from '@tanstack/react-query'
 const clientCache = createEmotionCache({ key: 'css', enableCssLayer: false }) // NOTE: needed for accidental complexity reasons
 const App = ({ Component, pageProps }) => {
-    const queryClient = useMemo(() => new QueryClient(), [pageProps.dehydratedState])
+    const queryClient = useMemo(() => new QueryClient(), [])
     const { theme } = useThemeMode()
     return (<>
         <Head><title>{TITLE}</title><meta name='viewport' content='width=device-width, initial-scale=1.0' /></Head>
